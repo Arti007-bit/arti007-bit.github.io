@@ -25,44 +25,15 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
             flex-wrap: wrap;
         }
-        header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-        nav {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-            font-weight: bold;
-            transition: 0.2s;
-        }
+        header h1 { margin: 0; font-size: 24px; }
+        nav { display: flex; flex-wrap: wrap; align-items: center; }
+        nav a { color: white; text-decoration: none; margin: 0 10px; font-weight: bold; transition: 0.2s; }
         nav a:hover { text-decoration: underline; }
 
         /* جستجو */
-        .search-box {
-            display: flex;
-            margin-top: 5px;
-        }
-        .search-box input {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 5px 0 0 5px;
-            outline: none;
-        }
-        .search-box button {
-            padding: 5px 10px;
-            border: none;
-            background: #388e3c;
-            color: white;
-            font-weight: bold;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-        }
+        .search-box { display: flex; margin-top: 5px; }
+        .search-box input { padding: 5px 10px; border: none; border-radius: 5px 0 0 5px; outline: none; }
+        .search-box button { padding: 5px 10px; border: none; background: #388e3c; color: white; font-weight: bold; border-radius: 0 5px 5px 0; cursor: pointer; }
         .search-box button:hover { background: #2e7030; }
 
         /* بخش محصولات */
@@ -80,69 +51,24 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             transition: transform 0.2s, box-shadow 0.2s;
         }
-        .product:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-        }
-        .product img {
-            width: 150px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-        .product h3 {
-            font-size: 18px;
-            margin: 5px 0;
-            color: #333;
-        }
-        .product p {
-            font-size: 14px;
-            color: #555;
-            margin: 3px 0;
-        }
-        .price {
-            font-weight: bold;
-            color: #d32f2f;
-            margin: 8px 0;
-        }
-        .product button {
-            background: #ff4800;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+        .product:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
+        .product img { width: 150px; height: 200px; object-fit: cover; border-radius: 5px; margin-bottom: 10px; }
+        .product h3 { font-size: 18px; margin: 5px 0; color: #333; }
+        .product p { font-size: 14px; color: #555; margin: 3px 0; }
+        .price { font-weight: bold; color: #d32f2f; margin: 8px 0; }
+        .product button { background: #ff4800; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; transition: 0.2s; }
         .product button:hover { background: #e03b00; }
 
         /* سبد خرید */
-        .cart {
-            background: #fff;
-            padding: 10px 15px;
-            border-radius: 5px;
-            margin-right: 15px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+        .cart { background: #fff; padding: 10px 15px; border-radius: 5px; margin-right: 15px; cursor: pointer; transition: 0.2s; }
         .cart:hover { background: #e8f5e9; }
 
         /* فوتر */
-        footer {
-            background: #4caf50;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 40px;
-        }
+        footer { background: #4caf50; color: white; text-align: center; padding: 15px; margin-top: 40px; }
 
         /* واکنش‌گرایی موبایل */
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+            header { flex-direction: column; align-items: flex-start; }
             .search-box { width: 100%; margin-top: 10px; }
         }
     </style>
@@ -177,7 +103,7 @@
             <h3>قدرت عادت</h3>
             <p>نویسنده: چارلز داهیگ</p>
             <div class="price">۲۱۰,۰۰۰ تومان</div>
-            <button>افزودن به سبد خرید</button>
+            <button class="pay-btn" data-order-id="ORDER1" data-amount="210000">پرداخت آنلاین</button>
         </div>
 
         <div class="product">
@@ -185,7 +111,7 @@
             <h3>انسان در جستجوی معنا</h3>
             <p>نویسنده: ویکتور فرانکل</p>
             <div class="price">۱۸۵,۰۰۰ تومان</div>
-            <button>افزودن به سبد خرید</button>
+            <button class="pay-btn" data-order-id="ORDER2" data-amount="185000">پرداخت آنلاین</button>
         </div>
 
         <div class="product">
@@ -193,7 +119,7 @@
             <h3>پدر پولدار، پدر بی‌پول</h3>
             <p>نویسنده: رابرت کیوساکی</p>
             <div class="price">۲۴۰,۰۰۰ تومان</div>
-            <button>افزودن به سبد خرید</button>
+            <button class="pay-btn" data-order-id="ORDER3" data-amount="240000">پرداخت آنلاین</button>
         </div>
 
         <div class="product">
@@ -201,7 +127,7 @@
             <h3>چهار اثر فلورانس اسکاول شین</h3>
             <p>نویسنده: فلورانس شین</p>
             <div class="price">۱۵۰,۰۰۰ تومان</div>
-            <button>افزودن به سبد خرید</button>
+            <button class="pay-btn" data-order-id="ORDER4" data-amount="150000">پرداخت آنلاین</button>
         </div>
 
     </section>
@@ -209,6 +135,42 @@
     <footer>
         تمامی حقوق این سایت محفوظ است © ۲۰۲۵
     </footer>
+
+    <!-- شبیه‌ساز پرداخت آنلاین -->
+    <script>
+    document.addEventListener('click', function(e){
+        const btn = e.target.closest('.pay-btn');
+        if(!btn) return;
+
+        const orderId = btn.dataset.orderId;
+        const amount = btn.dataset.amount;
+
+        // شبیه‌سازی ایجاد فرم POST به درگاه
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'https://example-payment-gateway.com/startpay'; // جایگزین URL واقعی درگاه
+        form.style.display = 'none';
+
+        // پارامترهای فرضی تراکنش
+        const params = {
+            orderId: orderId,
+            amount: amount,
+            merchantId: '123456',
+            callbackUrl: 'https://your-site.com/callback'
+        };
+
+        for(const key in params){
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = params[key];
+            form.appendChild(input);
+        }
+
+        document.body.appendChild(form);
+        form.submit();
+    });
+    </script>
 
 </body>
 </html>
