@@ -71,6 +71,51 @@
             header { flex-direction: column; align-items: flex-start; }
             .search-box { width: 100%; margin-top: 10px; }
         }
+
+        /* استایل فرم‌ها (پاپ‌آپ) */
+        .modal {
+          display: none;
+          position: fixed;
+          z-index: 999;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+          background-color: #fefefe;
+          margin: 10% auto;
+          padding: 20px;
+          border-radius: 10px;
+          width: 300px;
+          text-align: center;
+        }
+        .modal-content input {
+          width: 90%;
+          padding: 8px;
+          margin: 8px 0;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+        }
+        .modal-content button {
+          background: #4caf50;
+          color: white;
+          border: none;
+          padding: 10px 15px;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        .modal-content button:hover { background: #388e3c; }
+        .close {
+          color: #aaa;
+          float: left;
+          font-size: 20px;
+          cursor: pointer;
+          margin-bottom: 10px;
+        }
+        .close:hover { color: black; }
     </style>
 </head>
 <body>
@@ -132,12 +177,36 @@
 
     </section>
 
+    <!-- فرم ثبت نام -->
+    <div id="signup-form" class="modal">
+      <div class="modal-content">
+        <span class="close" id="close-signup">&times;</span>
+        <h3>فرم ثبت نام</h3>
+        <input type="text" id="signup-username" placeholder="نام کاربری">
+        <input type="password" id="signup-password" placeholder="رمز عبور">
+        <input type="email" id="signup-email" placeholder="ایمیل (اختیاری)">
+        <button id="signup-submit">ثبت نام</button>
+      </div>
+    </div>
+
+    <!-- فرم ورود -->
+    <div id="login-form" class="modal">
+      <div class="modal-content">
+        <span class="close" id="close-login">&times;</span>
+        <h3>فرم ورود</h3>
+        <input type="text" id="login-username" placeholder="نام کاربری">
+        <input type="password" id="login-password" placeholder="رمز عبور">
+        <button id="login-submit">ورود</button>
+      </div>
+    </div>
+
     <footer>
         تمامی حقوق این سایت محفوظ است © ۲۰۲۵
     </footer>
 
-    <!-- شبیه‌ساز پرداخت آنلاین -->
+    <!-- اسکریپت‌ها -->
     <script>
+    // پرداخت آنلاین شبیه‌سازی شده
     document.addEventListener('click', function(e){
         const btn = e.target.closest('.pay-btn');
         if(!btn) return;
@@ -145,20 +214,17 @@
         const orderId = btn.dataset.orderId;
         const amount = btn.dataset.amount;
 
-        // شبیه‌سازی ایجاد فرم POST به درگاه
         const form = document.createElement('form');
         form.method = 'POST';
-        form.action = 'https://example-payment-gateway.com/startpay'; // جایگزین URL واقعی درگاه
+        form.action = 'https://example-payment-gateway.com/startpay';
         form.style.display = 'none';
 
-        // پارامترهای فرضی تراکنش
         const params = {
             orderId: orderId,
             amount: amount,
             merchantId: '123456',
             callbackUrl: 'https://your-site.com/callback'
         };
-
         for(const key in params){
             const input = document.createElement('input');
             input.type = 'hidden';
@@ -170,7 +236,65 @@
         document.body.appendChild(form);
         form.submit();
     });
-    </script>
 
+    // فرم ثبت نام و ورود
+    const signupForm = document.getElementById('signup-form');
+    const loginForm = document.getElementById('login-form');
+
+    document.querySelector('a[href="#signup"]').addEventListener('click', ()=>{
+      signupForm.style.display = 'block';
+    });
+    document.querySelector('a[href="#login"]').addEventListener('click', ()=>{
+      loginForm.style.display = 'block';
+    });
+
+    document.getElementById('close-signup').addEventListener('click', ()=>{ signupForm.style.display = 'none'; });
+    document.getElementById('close-login').addEventListener('click', ()=>{ loginForm.style.display = 'none'; });
+
+    // ثبت نام
+    document.getElementById('signup-submit').addEventListener('click', ()=>{
+      const username = document.getElementById('signup-username').value.trim();
+      const password = document.getElementById('signup-password').value.trim();
+      const email = document.getElementById('signup-email').value.trim();
+
+      if(!username || !password){
+        alert('نام کاربری و رمز عبور الزامی است');
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem('users') || '{}');
+
+      if(users[username]){
+        alert('نام کاربری قبلا ثبت شده است');
+        return;
+      }
+
+      users[username] = { password, email };
+      localStorage.setItem('users', JSON.stringify(users));
+      alert('ثبت نام با موفقیت انجام شد');
+      signupForm.style.display = 'none';
+    });
+
+    // ورود
+    document.getElementById('login-submit').addEventListener('click', ()=>{
+      const username = document.getElementById('login-username').value.trim();
+      const password = document.getElementById('login-password').value.trim();
+
+      let users = JSON.parse(localStorage.getItem('users') || '{}');
+
+      if(users[username] && users[username].password === password){
+        alert('ورود موفقیت‌آمیز بود. خوش آمدید '+username);
+        loginForm.style.display = 'none';
+      }else{
+        alert('نام کاربری یا رمز عبور اشتباه است');
+      }
+    });
+
+    // بستن فرم‌ها با کلیک بیرون
+    window.addEventListener('click', function(e){
+      if(e.target == signupForm) signupForm.style.display = 'none';
+      if(e.target == loginForm) loginForm.style.display = 'none';
+    });
+    </script>
 </body>
 </html>
