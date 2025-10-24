@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>کتابکده دانش</title>
+    <style>
+        body {
+            margin: 0;
+            background: #f4f6d8;
+            font-family: sans-serif;
+            direction: rtl;
+        }
+
+        /* نوار بالا */
+        header {
+            background: #4caf50;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* بخش محصولات */
+        .product-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            gap: 20px;
+        }
+        .product {
+            background: #fff;
+            width: 250px;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .product:hover {
+            transform: scale(1.03);
+        }
+        .product img {
+            width: 200px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .product h3 {
+            margin: 10px 0 5px;
+        }
+        .product p {
+            color: #555;
+            font-size: 14px;
+        }
+        .price {
+            font-weight: bold;
+            color: #388e3c;
+            margin: 8px 0;
+        }
+        button {
+            background: rgb(255, 72, 0);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: rgb(220, 60, 0);
+        }
+
+        footer {
+            background: #4caf50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- نوار بالا -->
+    <header>
+        <h1>📚 کتابکده دانش</h1>
+        <nav>
+            <a href="#home">خانه</a>
+            <a href="#store">فروشگاه</a>
+            <a href="#new">جدیدترین‌ها</a>
+            <a href="#contact">ارتباط با ما</a>
+            <a href="#login">ورود</a>
+            <a href="#signup">عضویت</a>
+        </nav>
+    </header>
+
+    <!-- بخش محصولات -->
+    <section id="store" class="product-container">
+
+        <div class="product">
+            <img src="qodrat.jpg" alt="کتاب موفقیت">
+            <h3>قدرت عادت</h3>
+            <p>نویسنده: چارلز داهیگ</p>
+            <div class="price">۲۱۰,۰۰۰ تومان</div>
+            <a href="https://example.com/book1"><button>افزودن به سبد خرید</button></a>
+        </div>
+
+        <div class="product">
+            <img src="ensan.jpg" alt="کتاب روانشناسی">
+            <h3>انسان در جستجوی معنا</h3>
+            <p>نویسنده: ویکتور فرانکل</p>
+            <div class="price">۱۸۵,۰۰۰ تومان</div>
+            <a href="https://example.com/book2"><button>افزودن به سبد خرید</button></a>
+        </div>
+
+        <div class="product">
+            <img src="pedar.jpg" alt="کتاب مالی">
+            <h3>پدر پولدار، پدر بی‌پول</h3>
+            <p>نویسنده: رابرت کیوساکی</p>
+            <div class="price">۲۴۰,۰۰۰ تومان</div>
+            <a href="https://example.com/book3"><button>افزودن به سبد خرید</button></a>
+        </div>
+
+        <div class="product">
+            <img src="chahar.jpg" alt="کتاب انگیزشی">
+            <h3>چهار اثر فلورانس اسکاول شین</h3>
+            <p>نویسنده: فلورانس شین</p>
+            <div class="price">۱۵۰,۰۰۰ تومان</div>
+            <a href="https://example.com/book4"><button>افزودن به سبد خرید</button></a>
+        </div>
+
+    </section>
+
+    <!-- فوت
