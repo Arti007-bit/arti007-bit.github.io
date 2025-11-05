@@ -55,8 +55,9 @@
     <!-- اسکریپت EmailJS -->
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
-        (function(){
-            emailjs.init("YOUR_USER_ID"); // اینجا باید شناسه کاربری EmailJS خودتون رو وارد کنید.
+        // تنظیم شناسه کاربری EmailJS
+        (function() {
+            emailjs.init("YOUR_USER_ID"); // شناسه کاربری خود را وارد کنید
         })();
 
         // ارسال فرم تماس
@@ -80,6 +81,7 @@
                 document.getElementById("form-response").style.color = "green";
             }, function(error) {
                 // خطا در ارسال
+                console.error("Error in sending email:", error); // برای دیباگ کردن خطا
                 document.getElementById("form-response").textContent = "متاسفانه پیام شما ارسال نشد. لطفاً دوباره تلاش کنید.";
                 document.getElementById("form-response").style.color = "red";
             });
