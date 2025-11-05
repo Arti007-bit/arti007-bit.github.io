@@ -5,86 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ارتباط با ما</title>
     <style>
-        /* استایل فرم تماس */
-        #contact-us {
-            background: #f8d5b4;
-            padding: 40px;
-            margin-top: 40px;
+        /* استایل عمومی صفحه */
+        body {
+            font-family: Tahoma, sans-serif;
+            direction: rtl; /* راست به چپ */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* استایل بخش ارتباط با ما */
+        .contact-section {
+            width: 50%; /* عرض نصف صفحه */
+            margin: 50px auto; /* مرکز چین کردن در صفحه */
+            padding: 20px;
+            background-color: #f4f4f4; /* رنگ پس زمینه */
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        #contact-us input, #contact-us textarea {
-            width: 100%;
+
+        .contact-section h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .contact-section form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-section label {
+            margin-top: 10px;
+        }
+
+        .contact-section input, .contact-section textarea {
             padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
+            margin-top: 5px;
+            margin-bottom: 10px;
             border: 1px solid #ccc;
+            border-radius: 5px;
         }
-        #contact-us button {
-            background: #4caf50;
+
+        .contact-section button {
+            padding: 10px;
+            background-color: #007bff;
             color: white;
-            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
-        #contact-us button:hover {
-            background: #388e3c;
+
+        .contact-section button:hover {
+            background-color: #0056b3;
         }
-        #form-response {
-            margin-top: 15px;
-            color: green;
-            font-weight: bold;
+
+        /* استایل دکمه بازگشت به خانه */
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .back-home:hover {
+            background-color: #218838;
         }
     </style>
 </head>
 <body>
 
-    <!-- فرم ارتباط با ما -->
-    <section id="contact-us">
+    <!-- بخش ارتباط با ما -->
+    <div class="contact-section">
         <h2>ارتباط با ما</h2>
-        <form id="contact-form">
-            <input type="text" id="contact-name" placeholder="نام شما" required>
-            <input type="email" id="contact-email" placeholder="ایمیل شما" required>
-            <textarea id="contact-message" placeholder="پیام شما" rows="5" required></textarea>
-            <button type="submit">ارسال پیام</button>
+        <form action="">
+            <!-- فیلدهای فرم -->
+            <label for="name">نام:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="email">ایمیل:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="message">پیام:</label><br>
+            <textarea id="message" name="message" rows="4" required></textarea><br><br>
+
+            <button type="submit">ارسال</button>
         </form>
-        <p id="form-response"></p>
-    </section>
 
-   <!-- لود EmailJS -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    // مقدار Public Key واقعی خود را وارد کنید:
-    emailjs.init({ publicKey:"1UUAOCHirKqC12OdW"});
-
-    // رویداد ارسال فرم
-    document.getElementById("contact-form").addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        const name = document.getElementById("contact-name").value;
-        const email = document.getElementById("contact-email").value;
-        const message = document.getElementById("contact-message").value;
-
-        emailjs.send("service_ah7d3xe", "template_m5c33z6", {
-            from_name: name,
-            from_email: email,
-            message: message
-        })
-        .then(() => {
-            document.getElementById("form-response").textContent = "پیام شما با موفقیت ارسال شد.";
-            document.getElementById("form-response").style.color = "green";
-        })
-        .catch((error) => {
-            console.error("Error in sending email:", error);
-            document.getElementById("form-response").textContent = "متاسفانه پیام شما ارسال نشد. لطفاً دوباره تلاش کنید.";
-            document.getElementById("form-response").style.color = "red";
-        });
-    });
-});
-</script>
-    <a href="index.html">🏠 بازگشت به صحفه ی اصلی </a>
+        <!-- دکمه بازگشت به صفحه اصلی -->
+        <a href="https://arti007-bit.github.io/index.html" class="back-home">بازگشت به خانه</a>
+    </div>
 
 </body>
 </html>
