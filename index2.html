@@ -57,7 +57,7 @@
     <script>
         // تنظیم شناسه کاربری EmailJS
         (function() {
-            emailjs.init("arti"); // شناسه کاربری خود را وارد کنید
+            emailjs.init("SGy7lu3IvsEDtDu8i"); // شناسه کاربری خود را وارد کنید
         })();
 
         // ارسال فرم تماس
@@ -65,9 +65,13 @@
             event.preventDefault();  // جلوگیری از ارسال پیش‌فرض فرم
 
             // دریافت مقادیر فرم
-            const name = document.getElementById("contact-name").value;
-            const email = document.getElementById("contact-email").value;
-            const message = document.getElementById("contact-message").value;
+            <form id="contact-form">
+  <input type="text" id="contact-name" />
+  <input type="email" id="contact-email" />
+  <textarea id="contact-message"></textarea>
+  <button type="submit">ارسال</button>
+</form>
+<p id="form-response"></p>
 
             // ارسال ایمیل از طریق EmailJS
             emailjs.send("service_ah7d3xe", "template_m5c33z6", {
