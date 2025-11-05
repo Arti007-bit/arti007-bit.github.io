@@ -7,7 +7,7 @@
     <style>
         /* استایل فرم تماس */
         #contact-us {
-            background: #fff;
+            background: #f8d5b4;
             padding: 40px;
             margin-top: 40px;
             border-radius: 10px;
@@ -52,45 +52,39 @@
         <p id="form-response"></p>
     </section>
 
-    <!-- اسکریپت EmailJS -->
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script>
-        // تنظیم شناسه کاربری EmailJS
-        (function() {
-          emailjs.init({ publicKey: "SGy7lu3IvsEDtDu8i" });
+   <!-- لود EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // مقدار Public Key واقعی خود را وارد کنید:
+    emailjs.init({ publicKey: "gS9d4_XYZ123abcD" });
 
-        // ارسال فرم تماس
-        document.getElementById("contact-form").addEventListener("submit", function(event) {
-            event.preventDefault();  // جلوگیری از ارسال پیش‌فرض فرم
+    // رویداد ارسال فرم
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+        event.preventDefault();
 
-            // دریافت مقادیر فرم
-            <form id="contact-form">
-  <input type="text" id="contact-name" />
-  <input type="email" id="contact-email" />
-  <textarea id="contact-message"></textarea>
-  <button type="submit">ارسال</button>
-</form>
-<p id="form-response"></p>
+        const name = document.getElementById("contact-name").value;
+        const email = document.getElementById("contact-email").value;
+        const message = document.getElementById("contact-message").value;
 
-            // ارسال ایمیل از طریق EmailJS
-            emailjs.send("service_ah7d3xe", "template_m5c33z6", {
-                from_name: name,
-                from_email: email,
-                message: message
-            })
-            .then(function(response) {
-                // پیام موفقیت‌آمیز
-                document.getElementById("form-response").textContent = "پیام شما با موفقیت ارسال شد.";
-                document.getElementById("form-response").style.color = "green";
-            }, function(error) {
-                // خطا در ارسال
-                console.error("Error in sending email:", error); // برای دیباگ کردن خطا
-                document.getElementById("form-response").textContent = "متاسفانه پیام شما ارسال نشد. لطفاً دوباره تلاش کنید.";
-                document.getElementById("form-response").style.color = "red";
-            });
+        emailjs.send("service_ah7d3xe", "template_m5c33z6", {
+            from_name: name,
+            from_email: email,
+            message: message
+        })
+        .then(() => {
+            document.getElementById("form-response").textContent = "پیام شما با موفقیت ارسال شد.";
+            document.getElementById("form-response").style.color = "green";
+        })
+        .catch((error) => {
+            console.error("Error in sending email:", error);
+            document.getElementById("form-response").textContent = "متاسفانه پیام شما ارسال نشد. لطفاً دوباره تلاش کنید.";
+            document.getElementById("form-response").style.color = "red";
         });
-    </script>
+    });
+});
+</script>
 
 </body>
 </html>
