@@ -11,64 +11,83 @@
             direction: rtl; /* راست به چپ */
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            height: 100vh; /* ارتفاع صفحه 100% */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f7f7f7; /* رنگ پس زمینه */
         }
 
         /* استایل بخش ارتباط با ما */
         .contact-section {
-            width: 50%; /* عرض نصف صفحه */
-            margin: 50px auto; /* مرکز چین کردن در صفحه */
+            width: 400px; /* عرض مشخص و باریک */
+            max-width: 100%; /* به اندازه صفحه نمایش کم بشه */
+            background-color: #fff;
             padding: 20px;
-            background-color: #f4f4f4; /* رنگ پس زمینه */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         .contact-section h2 {
-            text-align: center;
             color: #333;
+            margin-bottom: 20px;
         }
 
         .contact-section form {
             display: flex;
             flex-direction: column;
+            gap: 10px;
         }
 
         .contact-section label {
-            margin-top: 10px;
+            font-size: 16px;
+            color: #555;
         }
 
-        .contact-section input, .contact-section textarea {
-            padding: 10px;
+        .contact-section input,
+        .contact-section textarea {
+            padding: 12px;
             margin-top: 5px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 16px;
         }
 
+        /* استایل دکمه‌ها */
+        .button-container {
+            display: flex;
+            justify-content: space-between; /* دکمه‌ها را در دو طرف جدا می‌کند */
+            gap: 10px; /* فاصله بین دکمه‌ها */
+        }
+
+        .contact-section button,
+        .back-home {
+            width: 48%; /* هر دکمه نصف عرض را می‌گیرد */
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        /* دکمه ارسال پیام */
         .contact-section button {
-            padding: 10px;
             background-color: #007bff;
             color: white;
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
         }
 
         .contact-section button:hover {
             background-color: #0056b3;
         }
 
-        /* استایل دکمه بازگشت به خانه */
+        /* دکمه بازگشت به خانه */
         .back-home {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px;
             background-color: #28a745;
             color: white;
             text-decoration: none;
-            border-radius: 5px;
         }
 
         .back-home:hover {
@@ -92,11 +111,12 @@
             <label for="message">پیام:</label><br>
             <textarea id="message" name="message" rows="4" required></textarea><br><br>
 
-            <button type="submit">ارسال</button>
+            <!-- دکمه‌ها -->
+            <div class="button-container">
+                <button type="submit">ارسال پیام</button>
+                <a href="https://arti007-bit.github.io/index.html" class="back-home">بازگشت به خانه</a>
+            </div>
         </form>
-
-        <!-- دکمه بازگشت به صفحه اصلی -->
-        <a href="https://arti007-bit.github.io/index.html" class="back-home">بازگشت به خانه</a>
     </div>
 
 </body>
