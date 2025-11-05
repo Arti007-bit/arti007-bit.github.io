@@ -116,6 +116,38 @@
           margin-bottom: 10px;
         }
         .close:hover { color: black; }
+
+        /* فرم تماس */
+        #contact-us {
+            background: #fff;
+            padding: 40px;
+            margin-top: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        #contact-us input, #contact-us textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        #contact-us button {
+            background: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #contact-us button:hover {
+            background: #388e3c;
+        }
+        #form-response {
+            margin-top: 15px;
+            color: green;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -127,10 +159,8 @@
             <nav>
                 <a href="#home">خانه</a>
                 <a href="#store">فروشگاه</a>
-                <a href="index3.html">
-                    جدیدترین‌ها</a>
-                <a href="index2.html"> 
-                    ارتباط با ما</a>
+                <a href="index3.html">جدیدترین‌ها</a>
+                <a href="index2.html">ارتباط با ما</a>
                 <a href="#login">ورود</a>
                 <a href="#signup">عضویت</a>
             </nav>
@@ -142,41 +172,16 @@
         </div>
     </header>
 
-    <!-- محصولات -->
-    <section id="store" class="product-container">
-
-        <div class="product">
-            <img src="qodrat.jpg" alt="قدرت عادت">
-            <h3>قدرت عادت</h3>
-            <p>نویسنده: چارلز داهیگ</p>
-            <div class="price">۲۱۰,۰۰۰ تومان</div>
-            <button class="pay-btn" data-order-id="ORDER1" data-amount="210000">افزودن به سبد خرید</button>
-        </div>
-
-        <div class="product">
-            <img src="ensan.jpg" alt="انسان در جستجوی معنا">
-            <h3>انسان در جستجوی معنا</h3>
-            <p>نویسنده: ویکتور فرانکل</p>
-            <div class="price">۱۸۵,۰۰۰ تومان</div>
-            <button class="pay-btn" data-order-id="ORDER2" data-amount="185000">افزودن به سبد خرید</button>
-        </div>
-
-        <div class="product">
-            <img src="pedar.jpg" alt="پدر پولدار پدر بی‌پول">
-            <h3>پدر پولدار، پدر بی‌پول</h3>
-            <p>نویسنده: رابرت کیوساکی</p>
-            <div class="price">۲۴۰,۰۰۰ تومان</div>
-            <button class="pay-btn" data-order-id="ORDER3" data-amount="240000">افزودن به سبد خرید</button>
-        </div>
-
-        <div class="product">
-            <img src="chahar.jpg" alt="چهار اثر فلورانس شین">
-            <h3>چهار اثر فلورانس اسکاول شین</h3>
-            <p>نویسنده: فلورانس شین</p>
-            <div class="price">۱۵۰,۰۰۰ تومان</div>
-            <button class="pay-btn" data-order-id="ORDER4" data-amount="150000">افزودن به سبد خرید</button>
-        </div>
-
+    <!-- فرم ارتباط با ما -->
+    <section id="contact-us">
+        <h2>ارتباط با ما</h2>
+        <form id="contact-form">
+            <input type="text" id="contact-name" placeholder="نام شما" required>
+            <input type="email" id="contact-email" placeholder="ایمیل شما" required>
+            <textarea id="contact-message" placeholder="پیام شما" rows="5" required></textarea>
+            <button type="submit">ارسال پیام</button>
+        </form>
+        <p id="form-response"></p>
     </section>
 
     <!-- فرم ثبت نام -->
@@ -191,115 +196,4 @@
       </div>
     </div>
 
-    <!-- فرم ورود -->
-    <div id="login-form" class="modal">
-      <div class="modal-content">
-        <span class="close" id="close-login">&times;</span>
-        <h3>فرم ورود</h3>
-        <input type="text" id="login-username" placeholder="نام کاربری">
-        <input type="password" id="login-password" placeholder="رمز عبور">
-        <button id="login-submit">ورود</button>
-      </div>
-    </div>
-
-    <!-- اسکریپت‌ها -->
-    <script>
-    // پرداخت آنلاین شبیه‌سازی شده
-    document.addEventListener('click', function(e){
-        const btn = e.target.closest('.pay-btn');
-        if(!btn) return;
-
-        const orderId = btn.dataset.orderId;
-        const amount = btn.dataset.amount;
-
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = 'https://example-payment-gateway.com/startpay';
-        form.style.display = 'none';
-
-        const params = {
-            orderId: orderId,
-            amount: amount,
-            merchantId: '123456',
-            callbackUrl: 'https://your-site.com/callback'
-        };
-        for(const key in params){
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = key;
-            input.value = params[key];
-            form.appendChild(input);
-        }
-
-        document.body.appendChild(form);
-        form.submit();
-    });
-
-    // فرم ثبت نام و ورود
-    const signupForm = document.getElementById('signup-form');
-    const loginForm = document.getElementById('login-form');
-
-    document.querySelector('a[href="#signup"]').addEventListener('click', ()=>{
-      signupForm.style.display = 'block';
-    });
-    document.querySelector('a[href="#login"]').addEventListener('click', ()=>{
-      loginForm.style.display = 'block';
-    });
-
-    document.getElementById('close-signup').addEventListener('click', ()=>{ signupForm.style.display = 'none'; });
-    document.getElementById('close-login').addEventListener('click', ()=>{ loginForm.style.display = 'none'; });
-
-    // ثبت نام
-    document.getElementById('signup-submit').addEventListener('click', ()=>{
-      const username = document.getElementById('signup-username').value.trim();
-      const password = document.getElementById('signup-password').value.trim();
-      const email = document.getElementById('signup-email').value.trim();
-
-      if(!username || !password){
-        alert('نام کاربری و رمز عبور الزامی است');
-        return;
-      }
-
-      let users = JSON.parse(localStorage.getItem('users') || '{}');
-
-      if(users[username]){
-        alert('نام کاربری قبلا ثبت شده است');
-        return;
-      }
-
-      users[username] = { password, email };
-      localStorage.setItem('users', JSON.stringify(users));
-      alert('ثبت نام با موفقیت انجام شد');
-      signupForm.style.display = 'none';
-    });
-
-    // ورود
-    document.getElementById('login-submit').addEventListener('click', ()=>{
-      const username = document.getElementById('login-username').value.trim();
-      const password = document.getElementById('login-password').value.trim();
-
-      let users = JSON.parse(localStorage.getItem('users') || '{}');
-
-      if(users[username] && users[username].password === password){
-        alert('ورود موفقیت‌آمیز بود. خوش آمدید '+username);
-        loginForm.style.display = 'none';
-      }else{
-        alert('نام کاربری یا رمز عبور اشتباه است');
-      }
-    });
-
-    // بستن فرم‌ها با کلیک بیرون
-    window.addEventListener('click', function(e){
-      if(e.target == signupForm) signupForm.style.display = 'none';
-      if(e.target == loginForm) loginForm.style.display = 'none';
-    });
-    </script>
-     <!-- فوتر -->
-    <footer>
-        <p>تمامی حقوق این سایت محفوظ است © کتابکده دانش</p>
-          <a href="https://enamad.ir/" target="_blank">
-            <img src="logo.jpg" alt="نماد اعتماد الکترونیکی">
-        </a>
-    </footer>     
-</body>
-</html>
+    <!-- اسکریپت‌ها
