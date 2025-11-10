@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>سبد خرید شما</title>
+  <style>
+    body { font-family: sans-serif; direction: rtl; padding: 20px; background: #f4f4f4; }
+    h1 { color: #333; }
+    table { width: 100%; border-collapse: collapse; background: #fff; }
+    th, td { padding: 10px; border: 1px solid #ddd; text-align: right; }
+    th { background: #eee; }
+    .total { margin-top: 15px; font-weight: bold; }
+    .btn { display: inline-block; padding: 10px 20px; background: #2b8a3e; color: white; text-decoration: none; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+  <h1>سبد خرید شما</h1>
+
+  <table id="cart-table">
+    <thead>
+      <tr>
+        <th>محصول</th>
+        <th>تعداد</th>
+        <th>قیمت واحد</th>
+        <th>قیمت کل</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <p class="total">جمع کل: <span id="total">۰</span> تومان</p>
+
+  <a href="checkout.html" class="btn">تکمیل خرید</a>
+
+  <script>
+    // فرض: اطلاعات سبد خرید از localStorage با کلید "cart" ذخیره شده
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const tbody = document.querySelector('#cart-table tbody');
+    let total = 0;
+
+    cart.forEach(item => {
+      const priceUnit = item.price;
+      const qty = item.quantity;
+      const lineTotal = priceUnit * qty;
+      total += lineTotal;
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${item.name}</td>
+        <td>${qty}</td>
+        <td>${priceUnit.toLocaleString()} تومان</td>
+        <td>${lineTotal.toLocaleString()} تومان</td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    document.getElementById('total').textContent = total.toLocaleString();
+
+    // اگر سبد خالی بود:
+    if (cart.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">سبد خرید شما خالی است</td></tr>';
+      document.querySelector('.btn').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
