@@ -51,10 +51,12 @@ a { text-decoration: none; color: #007bff; }
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+  // خواندن سبد خرید از localStorage
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
   const tbody = document.querySelector("#cart-table tbody");
   const totalElement = document.querySelector(".total");
   const clearBtn = document.getElementById("clear-cart");
+
   tbody.innerHTML = "";
   let total = 0;
 
@@ -66,42 +68,50 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // نمایش اقلام سبد
+  // نمایش اقلام سبد خرید
   cart.forEach((item, index) => {
-    const subtotal = item.price * item.quantity;
+    const name = item.name || "بدون نام";
+    const price = Number(item.price) || 0;
+    const quantity = Number(item.quantity) || 1;
+    const subtotal = price * quantity;
     total += subtotal;
 
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${item.name}</td>
-      <td>${item.price.toLocaleString()} تومان</td>
+      <td>${name}</td>
+      <td>${price.toLocaleString()} تومان</td>
       <td>
         <button class="dec">-</button>
-        ${item.quantity}
+        ${quantity}
         <button class="inc">+</button>
       </td>
       <td>${subtotal.toLocaleString()} تومان</td>
     `;
     tbody.appendChild(tr);
 
-    // افزایش یا کاهش تعداد
+    // افزایش تعداد
     tr.querySelector(".inc").addEventListener("click", () => {
-      item.quantity++;
+      item.quantity = quantity + 1;
       localStorage.setItem("cart", JSON.stringify(cart));
       location.reload();
     });
 
+    // کاهش تعداد یا حذف کالا
     tr.querySelector(".dec").addEventListener("click", () => {
-      if (item.quantity > 1) item.quantity--;
-      else cart.splice(index, 1);
+      if (quantity > 1) {
+        item.quantity = quantity - 1;
+      } else {
+        cart.splice(index, 1);
+      }
       localStorage.setItem("cart", JSON.stringify(cart));
       location.reload();
     });
   });
 
+  // مجموع کل
   totalElement.innerText = `💰 مجموع کل: ${total.toLocaleString()} تومان`;
 
-  // دکمه خالی کردن سبد
+  // خالی کردن سبد خرید
   clearBtn.addEventListener("click", () => {
     if (confirm("آیا مطمئن هستید که می‌خواهید سبد خرید را خالی کنید؟")) {
       localStorage.removeItem("cart");
