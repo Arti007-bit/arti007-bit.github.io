@@ -34,9 +34,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const product = {
         id: index + 1,
         name: productElement.querySelector("h3").innerText.trim(),
-        price: parseInt(
-          productElement.querySelector("p").innerText.replace(/\D/g, "")
-        )
+      let rawPrice = productElement.querySelector("p").innerText;
+let digits = rawPrice.replace(/[^\d]/g, "");
+const price = parseInt(digits || "0", 10);
+
+const product = {
+  id: index + 1,
+  name: productElement.querySelector("h3").innerText.trim(),
+  price: price
+};
+
       };
 
       addToCart(product);
