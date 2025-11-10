@@ -1,52 +1,24 @@
-// 🛒 --- کد مدیریت سبد خرید --- 🛒
-
-// گرفتن سبد خرید از localStorage
-function getCart() {
-  return JSON.parse(localStorage.getItem("cart")) || [];
-}
-
-// ذخیره سبد خرید در localStorage
-function saveCart(cart) {
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
-
 // افزودن محصول به سبد خرید
-function addToCart(product) {
-  const cart = getCart();
-  const existing = cart.find(p => p.id === product.id);
+document.querySelectorAll('.add-to-cart').forEach(button => {
+  button.addEventListener('click', function() {
+    const productElement = this.closest('.product');
+    const name = productElement.querySelector('h3').textContent;
+    const priceText = productElement.querySelector('.price').textContent;
+    const price = parseInt(priceText.replace(/[^\d]/g, '')); // عدد خالص
+    
+    // دریافت سبد خرید از localStorage
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    
+    // بررسی وجود محصول
+    const existing = cart.find(item => item.name === name);
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({ name, price, quantity: 1 });
+    }
 
-  if (existing) {
-    existing.quantity++;
-  } else {
-    cart.push({ ...product, quantity: 1 });
-  }
-
-  saveCart(cart);
-  alert(`✅ "${product.name}" به سبد خرید افزوده شد`);
-}
-
-// اجرا پس از لود شدن صفحه
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".add-to-cart").forEach((btn, index) => {
-    btn.addEventListener("click", () => {
-      const productElement = btn.closest(".product");
-
-      const product = {
-        id: index + 1,
-        name: productElement.querySelector("h3").innerText.trim(),
-      let rawPrice = productElement.querySelector("p").innerText;
-let digits = rawPrice.replace(/[^\d]/g, "");
-const price = parseInt(digits || "0", 10);
-
-const product = {
-  id: index + 1,
-  name: productElement.querySelector("h3").innerText.trim(),
-  price: price
-};
-
-      };
-
-      addToCart(product);
-    });
+    // ذخیره مجدد سبد خرید
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(`✅ ${name} به سبد خرید اضافه شد!`);
   });
 });
