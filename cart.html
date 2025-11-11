@@ -14,141 +14,141 @@ h1 { color: #333; }
 table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #fff; }
 th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
 button { cursor: pointer; padding: 4px 8px; margin: 0 3px; }
-#clear-cart {
-  background: #d33;
+
+.cart-buttons {
+  margin-top: 20px;
+}
+
+.clear-cart,
+.finalize-cart {
+  display: inline-block;
   color: #fff;
   border: none;
-  padding: 10px 15px;
-  margin-top: 15px;
+  padding: 10px 18px;
+  margin: 5px;
   border-radius: 5px;
+  text-decoration: none;
   cursor: pointer;
+  transition: 0.3s;
+  font-size: 15px;
 }
-#clear-cart:hover { background: #b22; }
-.total { font-weight: bold; color: green; margin-top: 20px; }
+
+.clear-cart {
+  background-color: #d33;
+}
+
+.finalize-cart {
+  background-color: #4CAF50;
+}
+
+.clear-cart:hover {
+  background-color: #b22;
+}
+
+.finalize-cart:hover {
+  background-color: #45a049;
+}
+
+.total {
+  font-weight: bold;
+  color: green;
+  margin-top: 20px;
+}
 a { text-decoration: none; color: #007bff; }
 </style>
 </head>
+
 <body>
   <div class="cart-container">
-  <h2>سبد خرید شما</h2>
-<script>
-  function finalizeCart() {
-    // وقتی روی دکمه کلیک شد این کد اجرا می‌شه
-    alert("در حال انتقال به صفحه پرداخت نهایی...");
-    // انتقال به صفحه پرداخت
-    window.location.href = "checkout.html";
-  }
-</script>
+    <h1>🛒 سبد خرید شما</h1>
 
-<style>
-  .checkout-btn {
-    background-color: #28a745; /* سبز زیبا */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 15px;
-  }
-  .checkout-btn:hover {
-    background-color: #218838;
-  }
-</style>
+    <table id="cart-table">
+      <thead>
+        <tr>
+          <th>نام محصول</th>
+          <th>قیمت واحد</th>
+          <th>تعداد</th>
+          <th>جمع کل</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
 
-<h1>🛒 سبد خرید شما</h1>
+    <p class="total"></p>
 
-<table id="cart-table">
-  <thead>
-    <tr>
-      <th>نام محصول</th>
-      <th>قیمت واحد</th>
-      <th>تعداد</th>
-      <th>جمع کل</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
+    <!-- ✅ فقط همین دو دکمه کافی هست -->
+    <div class="cart-buttons">
+      <button id="clear-cart" class="clear-cart">🗑️ خالی کردن سبد خرید</button>
+      <a href="checkout.html" class="finalize-cart">نهایی کردن خرید</a>
+    </div>
 
-<p class="total"></p>
+    <br><br>
+    <a href="index.html">⬅️ بازگشت به فروشگاه</a>
+  </div>
 
-<button id="clear-cart">🗑️ خالی کردن سبد خرید</button>
-     </button>
-    <a href="checkout.html" class="finalize-cart">نهایی کردن خرید</a>
-</div>
-<br><br>
-<a href="index.html">⬅️ بازگشت به فروشگاه</a>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const tbody = document.querySelector("#cart-table tbody");
+    const totalElement = document.querySelector(".total");
+    const clearBtn = document.getElementById("clear-cart");
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  // خواندن سبد خرید از localStorage
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const tbody = document.querySelector("#cart-table tbody");
-  const totalElement = document.querySelector(".total");
-  const clearBtn = document.getElementById("clear-cart");
+    tbody.innerHTML = "";
+    let total = 0;
 
-  tbody.innerHTML = "";
-  let total = 0;
-
-  // اگر سبد خالی بود
-  if (cart.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="4">سبد خرید شما خالی است 🛒</td></tr>`;
-    totalElement.innerText = "";
-    clearBtn.style.display = "none";
-    return;
-  }
-
-  // نمایش اقلام سبد خرید
-  cart.forEach((item, index) => {
-    const name = item.name || "بدون نام";
-    const price = Number(item.price) || 0;
-    const quantity = Number(item.quantity) || 1;
-    const subtotal = price * quantity;
-    total += subtotal;
-
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${name}</td>
-      <td>${price.toLocaleString()} تومان</td>
-      <td>
-        <button class="dec">-</button>
-        ${quantity}
-        <button class="inc">+</button>
-      </td>
-      <td>${subtotal.toLocaleString()} تومان</td>
-    `;
-    tbody.appendChild(tr);
-
-    // افزایش تعداد
-    tr.querySelector(".inc").addEventListener("click", () => {
-      item.quantity = quantity + 1;
-      localStorage.setItem("cart", JSON.stringify(cart));
-      location.reload();
-    });
-
-    // کاهش تعداد یا حذف کالا
-    tr.querySelector(".dec").addEventListener("click", () => {
-      if (quantity > 1) {
-        item.quantity = quantity - 1;
-      } else {
-        cart.splice(index, 1);
-      }
-      localStorage.setItem("cart", JSON.stringify(cart));
-      location.reload();
-    });
-  });
-
-  // مجموع کل
-  totalElement.innerText = `💰 مجموع کل: ${total.toLocaleString()} تومان`;
-
-  // خالی کردن سبد خرید
-  clearBtn.addEventListener("click", () => {
-    if (confirm("آیا مطمئن هستید که می‌خواهید سبد خرید را خالی کنید؟")) {
-      localStorage.removeItem("cart");
-      location.reload();
+    if (cart.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="4">سبد خرید شما خالی است 🛒</td></tr>`;
+      totalElement.innerText = "";
+      clearBtn.style.display = "none";
+      return;
     }
+
+    cart.forEach((item, index) => {
+      const name = item.name || "بدون نام";
+      const price = Number(item.price) || 0;
+      const quantity = Number(item.quantity) || 1;
+      const subtotal = price * quantity;
+      total += subtotal;
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${name}</td>
+        <td>${price.toLocaleString()} تومان</td>
+        <td>
+          <button class="dec">-</button>
+          ${quantity}
+          <button class="inc">+</button>
+        </td>
+        <td>${subtotal.toLocaleString()} تومان</td>
+      `;
+      tbody.appendChild(tr);
+
+      tr.querySelector(".inc").addEventListener("click", () => {
+        item.quantity = quantity + 1;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        location.reload();
+      });
+
+      tr.querySelector(".dec").addEventListener("click", () => {
+        if (quantity > 1) {
+          item.quantity = quantity - 1;
+        } else {
+          cart.splice(index, 1);
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        location.reload();
+      });
+    });
+
+    totalElement.innerText = `💰 مجموع کل: ${total.toLocaleString()} تومان`;
+
+    clearBtn.addEventListener("click", () => {
+      if (confirm("آیا مطمئن هستید که می‌خواهید سبد خرید را خالی کنید؟")) {
+        localStorage.removeItem("cart");
+        location.reload();
+      }
+    });
   });
-});
-</script>
+  </script>
 </body>
 </html>
