@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: "Vazirmatn", sans-serif;
-      background-color: #d2b48c; /* قهوه‌ای روشن */
+      background-color: #d2b48c;
       margin: 0;
       padding: 0;
       direction: rtl;
@@ -90,7 +90,7 @@
       <textarea id="address" name="address" required></textarea>
 
       <div class="total">
-        مبلغ کل: <span id="totalPrice">125,000 تومان</span>
+        مبلغ کل: <span id="totalPrice">در حال محاسبه...</span>
       </div>
 
       <button type="submit" class="checkout-btn">پرداخت نهایی</button>
@@ -98,9 +98,33 @@
   </div>
 
   <script>
+    // دریافت سبد خرید از localStorage
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let total = 0;
+
+    cart.forEach(item => {
+      const price = Number(item.price) || 0;
+      const quantity = Number(item.quantity) || 1;
+      total += price * quantity;
+    });
+
+    // نمایش مبلغ کل واقعی
+    const totalElement = document.getElementById("totalPrice");
+    if(cart.length === 0){
+      totalElement.innerText = "سبد خرید خالی است 🛒";
+    } else {
+      totalElement.innerText = total.toLocaleString() + " تومان";
+    }
+
     function goToPayment(event) {
       event.preventDefault();
-      // اینجا بعداً می‌تونیم درگاه پرداخت رو اضافه کنیم
+
+      if(cart.length === 0){
+        alert("سبد خرید خالی است و نمی‌توانید پرداخت کنید.");
+        return;
+      }
+
+      // اینجا می‌تونیم درگاه پرداخت رو اضافه کنیم
       alert("در حال انتقال به درگاه پرداخت...");
       window.location.href = "payment.html"; // یا مسیر درگاه واقعی
     }
