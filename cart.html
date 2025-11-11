@@ -29,6 +29,39 @@ a { text-decoration: none; color: #007bff; }
 </style>
 </head>
 <body>
+  <div class="cart-container">
+  <h2>سبد خرید شما</h2>
+  <!-- دکمه نهایی کردن سبد خرید -->
+  <button onclick="finalizeCart()" class="checkout-btn">
+    نهایی کردن سبد خرید
+  </button>
+    <a href="checkout.html" class="finalize-cart">نهایی کردن خرید</a>
+</div>
+<script>
+  function finalizeCart() {
+    // وقتی روی دکمه کلیک شد این کد اجرا می‌شه
+    alert("در حال انتقال به صفحه پرداخت نهایی...");
+    // انتقال به صفحه پرداخت
+    window.location.href = "checkout.html";
+  }
+</script>
+
+<style>
+  .checkout-btn {
+    background-color: #28a745; /* سبز زیبا */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  .checkout-btn:hover {
+    background-color: #218838;
+  }
+</style>
+
 <h1>🛒 سبد خرید شما</h1>
 
 <table id="cart-table">
