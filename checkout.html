@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نهایی کردن خرید</title>
+  <style>
+    body {
+      font-family: "Vazirmatn", sans-serif;
+      background-color: #d2b48c; /* قهوه‌ای روشن */
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+    }
+
+    .checkout-container {
+      max-width: 500px;
+      background-color: #fff;
+      margin: 60px auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      color: #5c3a1e;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      color: #333;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    .total {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 16px;
+      color: #4a2c15;
+      text-align: center;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      background-color: #8b4513;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      margin-top: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .checkout-btn:hover {
+      background-color: #6b3410;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="checkout-container">
+    <h2>نهایی کردن خرید</h2>
+
+    <form onsubmit="goToPayment(event)">
+      <label for="name">نام و نام خانوادگی:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="phone">شماره تماس:</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <label for="address">آدرس:</label>
+      <textarea id="address" name="address" required></textarea>
+
+      <div class="total">
+        مبلغ کل: <span id="totalPrice">125,000 تومان</span>
+      </div>
+
+      <button type="submit" class="checkout-btn">پرداخت نهایی</button>
+    </form>
+  </div>
+
+  <script>
+    function goToPayment(event) {
+      event.preventDefault();
+      // اینجا بعداً می‌تونیم درگاه پرداخت رو اضافه کنیم
+      alert("در حال انتقال به درگاه پرداخت...");
+      window.location.href = "payment.html"; // یا مسیر درگاه واقعی
+    }
+  </script>
+
+</body>
+</html>
