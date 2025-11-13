@@ -10,22 +10,21 @@
         body {
             margin: 0;
             font-family: "Tahoma", sans-serif;
-            background: #f4f6d8;
+            background: #cce7ff; /* آبی کم‌رنگ */
             direction: rtl;
         }
 
         /* هدر سایت */
-       header {
-    background: linear-gradient(to right, #4caf50, #4a90e2); /* از سبز به آبی متوسط */
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 40px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    flex-wrap: wrap;
-}
-
+        header {
+            background: rgba(255,255,255,0.1); /* هدر شفاف / هماهنگ با پس‌زمینه */
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 40px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            flex-wrap: wrap;
+        }
         header h1 { margin: 0; font-size: 24px; }
         nav { display: flex; flex-wrap: wrap; align-items: center; }
         nav a { color: white; text-decoration: none; margin: 0 10px; font-weight: bold; transition: 0.2s; }
@@ -117,50 +116,54 @@
           margin-bottom: 10px;
         }
         .close:hover { color: black; }
-        /* اسلایدر عریض */
-.slider {
-    position: relative;
-    width: 100%;
-    height: 400px; /* می‌توانی ارتفاع را تغییر دهی */
-    overflow: hidden;
-    margin: 20px 0;
-}
-.slides {
-    display: flex;
-    width: 300%; /* تعداد اسلاید * 100% */
-    height: 100%;
-    transition: transform 0.8s ease-in-out;
-}
-.slide {
-    width: 100%;
-    flex-shrink: 0;
-    height: 100%;
-}
-.slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* تصویر تمام فضای اسلایدر را پر می‌کند */
-}
-.slider-controls {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
-    padding: 0 20px;
-}
-.slider-controls span {
-    cursor: pointer;
-    font-size: 35px;
-    color: white;
-    background: rgba(0,0,0,0.4);
-    padding: 5px 12px;
-    border-radius: 5px;
-    user-select: none;
-    transition: 0.3s;
-}
-.slider-controls span:hover { background: rgba(0,0,0,0.7); }
+
+        /* اسلایدر عریض با عکس‌های کامل دیده شده */
+        .slider {
+            position: relative;
+            width: 100%;
+            height: 250px; /* ارتفاع کمتر برای دید کامل تصویر */
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .slides {
+            display: flex;
+            width: 300%; /* تعداد اسلاید * 100% */
+            height: 100%;
+            transition: transform 0.8s ease-in-out;
+        }
+        .slide {
+            width: 100%;
+            flex-shrink: 0;
+            height: 100%;
+        }
+        .slide img {
+            width: auto;
+            height: 100%;
+            max-width: 100%;
+            object-fit: contain; /* تصویر کامل داخل اسلایدر نمایش داده شود */
+            margin: 0 auto;
+            display: block;
+        }
+        .slider-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+        }
+        .slider-controls span {
+            cursor: pointer;
+            font-size: 35px;
+            color: white;
+            background: rgba(0,0,0,0.4);
+            padding: 5px 12px;
+            border-radius: 5px;
+            user-select: none;
+            transition: 0.3s;
+        }
+        .slider-controls span:hover { background: rgba(0,0,0,0.7); }
 
     </style>
 </head>
@@ -172,72 +175,69 @@
             <nav>
                 <a href="#home">خانه</a>
                 <a href="#store">فروشگاه</a>
-                <a href="index3.html" target="blank" >
-                    جدیدترین‌ها</a>
-                <a href="index2.html" target="blank" > 
-                    ارتباط با ما</a>
+                <a href="index3.html" target="blank">جدیدترین‌ها</a>
+                <a href="index2.html" target="blank">ارتباط با ما</a>
                 <a href="#login">ورود</a>
                 <a href="#signup">عضویت</a>
             </nav>
-            <div class="cart" > 
-                <a href="cart.html" target="blank">
-                  🛒 سبد خرید <a/>
-                </div>
+            <div class="cart"> 
+                <a href="cart.html" target="blank">🛒 سبد خرید</a>
+            </div>
         </div>
         <div class="search-box">
             <input type="text" placeholder="جستجوی کتاب...">
             <button>جستجو</button>
         </div>
     </header>
-<!-- اسلایدر کشویی عریض -->
-<section class="slider">
-    <div class="slides">
-        <div class="slide"><img src="raz.jpg" alt="کتاب‌های جدید"></div>
-        <div class="slide"><img src="book store.jpg" alt="فروش ویژه"></div>
-        <div class="slide"><img src="asar morakab.jpg" alt="پیشنهاد ما"></div>
-    </div>
-    <div class="slider-controls">
-        <span class="prev">&#10094;</span>
-        <span class="next">&#10095;</span>
-    </div>
-</section>
+
+    <!-- اسلایدر کشویی -->
+    <section class="slider">
+        <div class="slides">
+            <div class="slide"><img src="raz.jpg" alt="کتاب‌های جدید"></div>
+            <div class="slide"><img src="book store.jpg" alt="فروش ویژه"></div>
+            <div class="slide"><img src="asar morakab.jpg" alt="پیشنهاد ما"></div>
+        </div>
+        <div class="slider-controls">
+            <span class="prev">&#10094;</span>
+            <span class="next">&#10095;</span>
+        </div>
+    </section>
 
     <!-- محصولات -->
     <section id="store" class="product-container">
+        <div class="product">
+            <img src="qodrat.jpg" alt="قدرت عادت">
+            <h3>قدرت عادت</h3>
+            <p>نویسنده: چارلز داهیگ</p>
+            <div class="price">۲۱۰,۰۰۰ تومان</div>
+            <button class="add-to-cart" data-price="210000">افزودن به سبد خرید</button>
+        </div>
 
-       <div class="product">
-  <img src="qodrat.jpg" alt="قدرت عادت">
-  <h3>قدرت عادت</h3>
-  <p>نویسنده: چارلز داهیگ</p>
-  <div class="price">۲۱۰,۰۰۰ تومان</div>
-  <button class="add-to-cart" data-price="210000">افزودن به سبد خرید</button>
-</div>
+        <div class="product">
+            <img src="ensan.jpg" alt="انسان در جستجوی معنا">
+            <h3>انسان در جستجوی معنا</h3>
+            <p>نویسنده: ویکتور فرانکل</p>
+            <div class="price">۱۸۵,۰۰۰ تومان</div>
+            <button class="add-to-cart" data-price="185000">افزودن به سبد خرید</button>
+        </div>
 
-<div class="product">
-  <img src="ensan.jpg" alt="انسان در جستجوی معنا">
-  <h3>انسان در جستجوی معنا</h3>
-  <p>نویسنده: ویکتور فرانکل</p>
-  <div class="price">۱۸۵,۰۰۰ تومان</div>
-  <button class="add-to-cart" data-price="185000">افزودن به سبد خرید</button>
-</div>
+        <div class="product">
+            <img src="pedar.jpg" alt="پدر پولدار پدر بی‌پول">
+            <h3>پدر پولدار، پدر بی‌پول</h3>
+            <p>نویسنده: رابرت کیوساکی</p>
+            <div class="price">۲۴۰,۰۰۰ تومان</div>
+            <button class="add-to-cart" data-price="240000">افزودن به سبد خرید</button>
+        </div>
 
-<div class="product">
-  <img src="pedar.jpg" alt="پدر پولدار پدر بی‌پول">
-  <h3>پدر پولدار، پدر بی‌پول</h3>
-  <p>نویسنده: رابرت کیوساکی</p>
-  <div class="price">۲۴۰,۰۰۰ تومان</div>
-  <button class="add-to-cart" data-price="240000">افزودن به سبد خرید</button>
-</div>
-
-<div class="product">
-  <img src="chahar.jpg" alt="چهار اثر فلورانس شین">
-  <h3>چهار اثر فلورانس اسکاول شین</h3>
-  <p>نویسنده: فلورانس شین</p>
-  <div class="price">۱۵۰,۰۰۰ تومان</div>
-  <button class="add-to-cart" data-price="150000">افزودن به سبد خرید</button>
-</div>
-
+        <div class="product">
+            <img src="chahar.jpg" alt="چهار اثر فلورانس شین">
+            <h3>چهار اثر فلورانس اسکاول شین</h3>
+            <p>نویسنده: فلورانس شین</p>
+            <div class="price">۱۵۰,۰۰۰ تومان</div>
+            <button class="add-to-cart" data-price="150000">افزودن به سبد خرید</button>
+        </div>
     </section>
+
     <!-- فرم ثبت نام -->
     <div id="signup-form" class="modal">
       <div class="modal-content">
@@ -262,123 +262,40 @@
     </div>
 
     <!-- اسکریپت‌ها -->
+    <script src="cart.js"></script>
     <script>
-    // پرداخت آنلاین شبیه‌سازی شده
-    document.addEventListener('click', function(e){
-        const btn = e.target.closest('.pay-btn');
-        if(!btn) return;
-
-        const orderId = btn.dataset.orderId;
-        const amount = btn.dataset.amount;
-
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = 'https://example-payment-gateway.com/startpay';
-        form.style.display = 'none';
-
-        const params = {
-            orderId: orderId,
-            amount: amount,
-            merchantId: '123456',
-            callbackUrl: 'https://your-site.com/callback'
-        };
-        for(const key in params){
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = key;
-            input.value = params[key];
-            form.appendChild(input);
-        }
-
-        document.body.appendChild(form);
-        form.submit();
-    });
-
-    // فرم ثبت نام و ورود
+    // ثبت نام و ورود
     const signupForm = document.getElementById('signup-form');
     const loginForm = document.getElementById('login-form');
 
-    document.querySelector('a[href="#signup"]').addEventListener('click', ()=>{
-      signupForm.style.display = 'block';
-    });
-    document.querySelector('a[href="#login"]').addEventListener('click', ()=>{
-      loginForm.style.display = 'block';
-    });
-
-    document.getElementById('close-signup').addEventListener('click', ()=>{ signupForm.style.display = 'none'; });
-    document.getElementById('close-login').addEventListener('click', ()=>{ loginForm.style.display = 'none'; });
-
-    // ثبت نام
-    document.getElementById('signup-submit').addEventListener('click', ()=>{
-      const username = document.getElementById('signup-username').value.trim();
-      const password = document.getElementById('signup-password').value.trim();
-      const email = document.getElementById('signup-email').value.trim();
-
-      if(!username || !password){
-        alert('نام کاربری و رمز عبور الزامی است');
-        return;
-      }
-
-      let users = JSON.parse(localStorage.getItem('users') || '{}');
-
-      if(users[username]){
-        alert('نام کاربری قبلا ثبت شده است');
-        return;
-      }
-
-      users[username] = { password, email };
-      localStorage.setItem('users', JSON.stringify(users));
-      alert('ثبت نام با موفقیت انجام شد');
-      signupForm.style.display = 'none';
+    document.querySelector('a[href="#signup"]').addEventListener('click', ()=> signupForm.style.display='block');
+    document.querySelector('a[href="#login"]').addEventListener('click', ()=> loginForm.style.display='block');
+    document.getElementById('close-signup').addEventListener('click', ()=> signupForm.style.display='none');
+    document.getElementById('close-login').addEventListener('click', ()=> loginForm.style.display='none');
+    window.addEventListener('click', e=>{
+      if(e.target==signupForm) signupForm.style.display='none';
+      if(e.target==loginForm) loginForm.style.display='none';
     });
 
-    // ورود
-    document.getElementById('login-submit').addEventListener('click', ()=>{
-      const username = document.getElementById('login-username').value.trim();
-      const password = document.getElementById('login-password').value.trim();
-
-      let users = JSON.parse(localStorage.getItem('users') || '{}');
-
-      if(users[username] && users[username].password === password){
-        alert('ورود موفقیت‌آمیز بود. خوش آمدید '+username);
-        loginForm.style.display = 'none';
-      }else{
-        alert('نام کاربری یا رمز عبور اشتباه است');
-      }
-    });
-
-    // بستن فرم‌ها با کلیک بیرون
-    window.addEventListener('click', function(e){
-      if(e.target == signupForm) signupForm.style.display = 'none';
-      if(e.target == loginForm) loginForm.style.display = 'none';
-    });
+    // اسلایدر خودکار و کنترل دستی
+    const slides = document.querySelector('.slides');
+    const slideCount = document.querySelectorAll('.slide').length;
+    let index = 0;
+    function showSlide(i){
+        if(i>=slideCount) index=0;
+        if(i<0) index=slideCount-1;
+        slides.style.transform=`translateX(${-index*100}%)`;
+    }
+    setInterval(()=>{ index++; showSlide(index); },5000);
+    document.querySelector('.next').addEventListener('click', ()=>{ index++; showSlide(index); });
+    document.querySelector('.prev').addEventListener('click', ()=>{ index--; showSlide(index); });
     </script>
-     <!-- فوتر -->
+
     <footer>
         <p>تمامی حقوق این سایت محفوظ است © کتابکده دانش</p>
-          <a href="https://enamad.ir/" target="_blank">
+        <a href="https://enamad.ir/" target="_blank">
             <img src="logo.jpg" alt="نماد اعتماد الکترونیکی">
         </a>
-    </footer>     
-    <script src="cart.js"></script>
-                      <script>
-// اسلایدر خودکار و کنترل دستی
-const slides = document.querySelector('.slides');
-const slideCount = document.querySelectorAll('.slide').length;
-let index = 0;
-
-function showSlide(i){
-    if(i >= slideCount) index = 0;
-    if(i < 0) index = slideCount - 1;
-    slides.style.transform = `translateX(${-index * 100}%)`;
-}
-
-// حرکت خودکار هر 5 ثانیه
-setInterval(() => { index++; showSlide(index); }, 5000);
-
-// کنترل دستی
-document.querySelector('.next').addEventListener('click', () => { index++; showSlide(index); });
-document.querySelector('.prev').addEventListener('click', () => { index--; showSlide(index); });
-</script>
+    </footer>
 </body>
 </html>
