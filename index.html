@@ -116,6 +116,51 @@
           margin-bottom: 10px;
         }
         .close:hover { color: black; }
+        /* اسلایدر عریض */
+.slider {
+    position: relative;
+    width: 100%;
+    height: 400px; /* می‌توانی ارتفاع را تغییر دهی */
+    overflow: hidden;
+    margin: 20px 0;
+}
+.slides {
+    display: flex;
+    width: 300%; /* تعداد اسلاید * 100% */
+    height: 100%;
+    transition: transform 0.8s ease-in-out;
+}
+.slide {
+    width: 100%;
+    flex-shrink: 0;
+    height: 100%;
+}
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* تصویر تمام فضای اسلایدر را پر می‌کند */
+}
+.slider-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 20px;
+}
+.slider-controls span {
+    cursor: pointer;
+    font-size: 35px;
+    color: white;
+    background: rgba(0,0,0,0.4);
+    padding: 5px 12px;
+    border-radius: 5px;
+    user-select: none;
+    transition: 0.3s;
+}
+.slider-controls span:hover { background: rgba(0,0,0,0.7); }
+
     </style>
 </head>
 <body>
@@ -143,6 +188,18 @@
             <button>جستجو</button>
         </div>
     </header>
+<!-- اسلایدر کشویی عریض -->
+<section class="slider">
+    <div class="slides">
+        <div class="slide"><img src="raz.jpg" alt="راز"></div>
+        <div class="slide"><img src="movafaghyat.jpg" alt="موفقیت"></div>
+        <div class="slide"><img src="asar morakab.jpg" alt="پیشنهاد ما"></div>
+    </div>
+    <div class="slider-controls">
+        <span class="prev">&#10094;</span>
+        <span class="next">&#10095;</span>
+    </div>
+</section>
 
     <!-- محصولات -->
     <section id="store" class="product-container">
@@ -303,5 +360,25 @@
         </a>
     </footer>
     <script src="cart.js"></script>
+                      <script>
+// اسلایدر خودکار و کنترل دستی
+const slides = document.querySelector('.slides');
+const slideCount = document.querySelectorAll('.slide').length;
+let index = 0;
+
+function showSlide(i){
+    if(i >= slideCount) index = 0;
+    if(i < 0) index = slideCount - 1;
+    slides.style.transform = `translateX(${-index * 100}%)`;
+}
+
+// حرکت خودکار هر 5 ثانیه
+setInterval(() => { index++; showSlide(index); }, 5000);
+
+// کنترل دستی
+document.querySelector('.next').addEventListener('click', () => { index++; showSlide(index); });
+document.querySelector('.prev').addEventListener('click', () => { index--; showSlide(index); });
+</script>
+
 </body>
 </html>
