@@ -127,7 +127,7 @@
 
 .slides {
     display: flex;
-    transition: transform 0.5s ease;
+    transition: 0.5s;
 }
 
 .slide {
@@ -136,23 +136,23 @@
 
 .slide img {
     width: 100%;
-    display: block;
 }
 
 .slider-controls span {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 30px;
-    cursor: pointer;
-    padding: 10px;
+    font-size: 40px;
     color: white;
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
     user-select: none;
-    z-index: 10;
 }
 
 .prev { left: 10px; }
 .next { right: 10px; }
+}
     </style>
 </head>
 <body>
@@ -183,20 +183,18 @@
 <!-- اسلایدر کشویی عریض -->
 <section class="slider">
     <div class="slides">
-        <div class="slide"><img src="raz.jpg" alt="راز"></div>
-        <div class="slide"><img src="ensan.jpg" alt="انسان"></div>
-        <div class="slide"><img src="asar-morakab.jpg" alt="اثر مرکب"></div>
+        <div class="slide"><img src="raz.jpg" alt=""></div>
+        <div class="slide"><img src="ensan.jpg" alt=""></div>
+        <div class="slide"><img src="asar-morakab.jpg" alt=""></div>
     </div>
 
     <div class="slider-controls">
-        <span class="prev">❮</span>
-        <span class="next">❯</span>
+        <span class="prev"><</span>
+        <span class="next">></span>
     </div>
 </section>
-
 </section>
-
-
+</section>
     <!-- محصولات -->
     <section id="store" class="product-container">
 
@@ -373,13 +371,6 @@ document.querySelector('.prev').onclick = () => {
     index = (index - 1 + total) % total;
     showSlide(index);
 }
-
-// اسلاید خودکار هر 5 ثانیه
-setInterval(() => {
-    index = (index + 1) % total;
-    showSlide(index);
-}, 5000);
 </script>
-
 </body>
 </html>
