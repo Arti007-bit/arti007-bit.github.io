@@ -359,26 +359,20 @@
             <img src="logo.jpg" alt="نماد اعتماد الکترونیکی">
         </a>
     </footer>
-    <script src="cart.js"></script>
-                      <script>
-// اسلایدر خودکار و کنترل دستی
-const slides = document.querySelector('.slides');
-const slideCount = document.querySelectorAll('.slide').length;
+<script>
 let index = 0;
+const slides = document.querySelector('.slides');
+const totalSlides = document.querySelectorAll('.slide').length;
 
-function showSlide(i){
-    if(i >= slideCount) index = 0;
-    if(i < 0) index = slideCount - 1;
-    slides.style.transform = `translateX(${-index * 100}%)`;
+document.querySelector('.next').onclick = function () {
+    index = (index + 1) % totalSlides;
+    slides.style.transform = `translateX(-${index * 100}%)`;
 }
 
-// حرکت خودکار هر 5 ثانیه
-setInterval(() => { index++; showSlide(index); }, 5000);
-
-// کنترل دستی
-document.querySelector('.next').addEventListener('click', () => { index++; showSlide(index); });
-document.querySelector('.prev').addEventListener('click', () => { index--; showSlide(index); });
+document.querySelector('.prev').onclick = function () {
+    index = (index - 1 + totalSlides) % totalSlides;
+    slides.style.transform = `translateX(-${index * 100}%)`;
+}
 </script>
-
 </body>
 </html>
