@@ -127,12 +127,11 @@
 
 .slides {
     display: flex;
-    width: 300%; /* چون ۳ تا عکس داری */
     transition: transform 0.5s ease;
 }
 
 .slide {
-    width: 100%;
+    min-width: 100%;
 }
 
 .slide img {
@@ -149,16 +148,11 @@
     padding: 10px;
     color: white;
     user-select: none;
+    z-index: 10;
 }
 
-.prev {
-    left: 10px;
-}
-
-.next {
-    right: 10px;
-}
-
+.prev { left: 10px; }
+.next { right: 10px; }
     </style>
 </head>
 <body>
@@ -198,6 +192,8 @@
         <span class="prev">❮</span>
         <span class="next">❯</span>
     </div>
+</section>
+
 </section>
 
 
@@ -362,17 +358,28 @@
 <script>
 let index = 0;
 const slides = document.querySelector('.slides');
-const totalSlides = document.querySelectorAll('.slide').length;
+const total = document.querySelectorAll('.slide').length;
 
-document.querySelector('.next').onclick = function () {
-    index = (index + 1) % totalSlides;
-    slides.style.transform = `translateX(-${index * 100}%)`;
+function showSlide(i) {
+    slides.style.transform = `translateX(-${i * 100}%)`;
 }
 
-document.querySelector('.prev').onclick = function () {
-    index = (index - 1 + totalSlides) % totalSlides;
-    slides.style.transform = `translateX(-${index * 100}%)`;
+document.querySelector('.next').onclick = () => {
+    index = (index + 1) % total;
+    showSlide(index);
 }
+
+document.querySelector('.prev').onclick = () => {
+    index = (index - 1 + total) % total;
+    showSlide(index);
+}
+
+// اسلاید خودکار هر 5 ثانیه
+setInterval(() => {
+    index = (index + 1) % total;
+    showSlide(index);
+}, 5000);
 </script>
+
 </body>
 </html>
