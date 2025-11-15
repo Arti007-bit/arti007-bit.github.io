@@ -119,47 +119,45 @@
         /* اسلایدر عریض */
 .slider {
     position: relative;
-    width: 150%;
-    height: 300px; /* می‌توانی ارتفاع را تغییر دهی */
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
     overflow: hidden;
-    margin: 30px 0;
 }
+
 .slides {
     display: flex;
-    width: 100%; /* تعداد اسلاید * 100% */
-    height: 100%;
-    transition: transform 0.8s ease-in-out;
+    width: 300%; /* چون ۳ تا عکس داری */
+    transition: transform 0.5s ease;
 }
+
 .slide {
     width: 100%;
-    flex-shrink: 0;
-    height: 100%;
 }
+
 .slide img {
     width: 100%;
-    height: 100%;
-    object-fit: center; /* تصویر تمام فضای اسلایدر را پر می‌کند */
+    display: block;
 }
-.slider-controls {
+
+.slider-controls span {
     position: absolute;
     top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
     transform: translateY(-50%);
-    padding: 0 20px;
-}
-.slider-controls span {
+    font-size: 30px;
     cursor: pointer;
-    font-size: 35px;
+    padding: 10px;
     color: white;
-    background: rgba(0,0,0,0.4);
-    padding: 5px 12px;
-    border-radius: 5px;
     user-select: none;
-    transition: 0.3s;
 }
-.slider-controls span:hover { background: rgba(0,0,0,0.7); }
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
 
     </style>
 </head>
@@ -192,14 +190,16 @@
 <section class="slider">
     <div class="slides">
         <div class="slide"><img src="raz.jpg" alt="راز"></div>
-        <div class="slide"><img src="ensan.jpg" alt="موفقیت"></div>
-        <div class="slide"><img src="asar-morakab.jpg" alt="پیشنهاد ما"></div>
+        <div class="slide"><img src="ensan.jpg" alt="انسان"></div>
+        <div class="slide"><img src="asar-morakab.jpg" alt="اثر مرکب"></div>
     </div>
+
     <div class="slider-controls">
-        <span class="prev">&#10094;</span>
-        <span class="next">&#10095;</span>
+        <span class="prev">❮</span>
+        <span class="next">❯</span>
     </div>
 </section>
+
 
     <!-- محصولات -->
     <section id="store" class="product-container">
