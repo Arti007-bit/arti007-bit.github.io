@@ -118,14 +118,17 @@
         .close:hover { color: black; }
         .hero-image {
     width: 100%;
-    height: 50vh; /* نصف صفحه */
-    overflow: hidden; /* اضافات را مخفی می‌کند */
+    display: flex;
+    justify-content: center; /* وسط‌چین افقی */
+    background: #f4f4f4; /* رنگ پس‌زمینه پشت عکس */
+    padding: 20px 0; /* فاصله از بالا و پایین */
 }
+
 .hero-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* تصویر به‌صورت وسط و بدون کشیدگی */
-    object-position: center center; /* وسط‌چین */
+    width: 60vw;    /* اندازه عکس کوچیک و استاندارد */
+    max-width: 600px; /* بیشتر از این بزرگ نشه */
+    height: auto;  /* جلوگیری از کشیدگی */
+    object-fit: contain; /* کل تصویر نمایش داده شود */
     display: block;
 }
     </style>
@@ -135,7 +138,6 @@
     <header>
         <h1>📚 کتابکده دانش</h1>
         <nav>
-    <img src="broshor.jpg" alt="ketabkhane" style="width:80px; margin-left:10px;">
     <a href="#home">خانه</a>
     <a href="#store">فروشگاه</a>
     <a href="index3.html" target="_blank">جدیدترین‌ها</a>
