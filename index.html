@@ -37,6 +37,15 @@
         .search-box button:hover { background: #2e7030; }
 
         /* بخش محصولات */
+        .product-title {
+    text-align: center;
+    border: 2px solid #2196f3;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin: 20px auto;
+    width: fit-content; /* وسط قرار گرفتن کامل */
+}
+
         .product-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -158,7 +167,7 @@
                       <div class="hero-image">
     <img src="broshor.jpg" alt="بروشور">
 </div>
-<h1> دسته بندی محصولات</h1>
+<h2 class="product-title">دسته بندی محصولات</h2>
     <!-- محصولات -->
     <section id="store" class="product-container">
 
