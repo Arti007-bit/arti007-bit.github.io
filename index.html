@@ -4,65 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>کتابکده دانش</title>
-
     <style>
         /* تنظیمات پایه */
-       body * { box-sizing: border-box; }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Tahoma", sans-serif;
+            background: #f4f6d8;
+            direction: rtl;
+        }
+
+        /* هدر سایت */
+        header {
+            background: #4caf50;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 40px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            flex-wrap: wrap;
         }
         header h1 { margin: 0; font-size: 24px; }
         nav { display: flex; flex-wrap: wrap; align-items: center; }
         nav a { color: white; text-decoration: none; margin: 0 10px; font-weight: bold; transition: 0.2s; }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-            font-weight: bold;
-            transition: 0.2s;
-        }
         nav a:hover { text-decoration: underline; }
 
         /* جستجو */
         .search-box { display: flex; margin-top: 5px; }
         .search-box input { padding: 5px 10px; border: none; border-radius: 5px 0 0 5px; outline: none; }
         .search-box button { padding: 5px 10px; border: none; background: #388e3c; color: white; font-weight: bold; border-radius: 0 5px 5px 0; cursor: pointer; }
-        .search-box input {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 5px 0 0 5px;
-            outline: none;
-        }
-        .search-box button {
-            padding: 5px 10px;
-            border: none;
-            background: #388e3c;
-            color: white;
-            font-weight: bold;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-        }
         .search-box button:hover { background: #2e7030; }
 
         /* بخش محصولات */
-        /* بنر سایت (بروشور) */
-        .hero-image {
-            width: 100%;
-            background: #f4f4f4;
-            padding: 20px 0;
-        }
-
-        .hero-container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .hero-container img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        /* عنوان محصولات */
         .product-title {
     text-align: center;
     border: 2px solid #2196f3;
@@ -71,71 +45,35 @@
     margin: 20px auto;
     width: fit-content; /* وسط قرار گرفتن کامل */
 }
-            text-align: center;
-            border: 2px solid #2196f3;
-            padding: 10px 20px;
-            border-radius: 8px;
-            margin: 20px auto;
-            width: fit-content;
-        }
 
-        /* بخش محصولات */
         .product-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-@@ -60,271 +100,134 @@
+            gap: 20px;
+            padding: 30px 40px;
+        }
+        .product {
+            background: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .product:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
         .product img { width: 150px; height: 200px; object-fit: cover; border-radius: 5px; margin-bottom: 10px; }
-        .product:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-        }
-        .product img {
-            width: 150px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
         .product h3 { font-size: 18px; margin: 5px 0; color: #333; }
         .product p { font-size: 14px; color: #555; margin: 3px 0; }
         .price { font-weight: bold; color: #d32f2f; margin: 8px 0; }
         .product button { background: #ff4800; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; transition: 0.2s; }
-        .product button {
-            background: #ff4800;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
         .product button:hover { background: #e03b00; }
 
         /* سبد خرید */
         .cart { background: #fff; padding: 10px 15px; border-radius: 5px; margin-right: 15px; cursor: pointer; transition: 0.2s; }
-        .cart {
-            background: #fff;
-            padding: 10px 15px;
-            border-radius: 5px;
-            margin-right: 15px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
         .cart:hover { background: #e8f5e9; }
 
         /* فوتر */
         footer { background: #4caf50; color: white; text-align: center; padding: 15px; margin-top: 40px; }
-        footer {
-            background: #4caf50;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 40px;
-        }
 
         /* واکنش‌گرایی موبایل */
         @media (max-width: 768px) {
@@ -206,14 +144,10 @@
 }
     </style>
 </head>
-
 <body>
     <!-- هدر سایت -->
-
-    <!-- هدر -->
     <header>
         <h1>📚 کتابکده دانش</h1>
-
         <nav>
     <a href="#home">خانه</a>
     <a href="#store">فروشگاه</a>
@@ -226,18 +160,7 @@
                 <a href="cart.html" target="blank">
                   🛒 Store <a/>
                 </div>
-            <a href="#home">خانه</a>
-            <a href="#store">فروشگاه</a>
-            <a href="index3.html" target="_blank">جدیدترین‌ها</a>
-            <a href="index2.html" target="_blank">ارتباط با ما</a>
-            <a href="#login">ورود</a>
-            <a href="#signup">عضویت</a>
-        </nav>
-
-        <div class="cart">
-            <a href="cart.html" target="_blank">🛒 Store</a>
         </div>
-
         <div class="search-box">
             <input type="text" placeholder="جستجوی کتاب...">
             <button>جستجو</button>
@@ -292,6 +215,7 @@
         <button id="signup-submit">ثبت نام</button>
       </div>
     </div>
+
     <!-- فرم ورود -->
     <div id="login-form" class="modal">
       <div class="modal-content">
@@ -301,11 +225,6 @@
         <input type="password" id="login-password" placeholder="رمز عبور">
         <button id="login-submit">ورود</button>
       </div>
-    <!-- بنر (بروشور) -->
-    <div class="hero-image">
-        <div class="hero-container">
-            <img src="broshor.jpg" alt="بروشور">
-        </div>
     </div>
 
     <!-- اسکریپت‌ها -->
@@ -317,7 +236,6 @@
 
         const orderId = btn.dataset.orderId;
         const amount = btn.dataset.amount;
-    <h2 class="product-title">دسته بندی محصولات</h2>
 
         const form = document.createElement('form');
         form.method = 'POST';
@@ -368,54 +286,24 @@
       }
 
       let users = JSON.parse(localStorage.getItem('users') || '{}');
-    <!-- محصولات -->
-    <section id="store" class="product-container">
 
       if(users[username]){
         alert('نام کاربری قبلا ثبت شده است');
         return;
       }
-        <div class="product">
-            <img src="qodrat.jpg" alt="قدرت عادت">
-            <h3>قدرت عادت</h3>
-            <p>چارلز داهیگ</p>
-            <div class="price">۲۱۰,۰۰۰ تومان</div>
-            <button>افزودن به سبد خرید</button>
-        </div>
 
       users[username] = { password, email };
       localStorage.setItem('users', JSON.stringify(users));
       alert('ثبت نام با موفقیت انجام شد');
       signupForm.style.display = 'none';
     });
-        <div class="product">
-            <img src="ensan.jpg" alt="انسان در جستجوی معنا">
-            <h3>انسان در جستجوی معنا</h3>
-            <p>ویکتور فرانکل</p>
-            <div class="price">۱۸۵,۰۰۰ تومان</div>
-            <button>افزودن به سبد خرید</button>
-        </div>
 
     // ورود
     document.getElementById('login-submit').addEventListener('click', ()=>{
       const username = document.getElementById('login-username').value.trim();
       const password = document.getElementById('login-password').value.trim();
-        <div class="product">
-            <img src="pedar.jpg" alt="پدر پولدار پدر بی‌پول">
-            <h3>پدر پولدار پدر بی‌پول</h3>
-            <p>رابرت کیوساکی</p>
-            <div class="price">۲۴۰,۰۰۰ تومان</div>
-            <button>افزودن به سبد خرید</button>
-        </div>
 
       let users = JSON.parse(localStorage.getItem('users') || '{}');
-        <div class="product">
-            <img src="chahar.jpg" alt="چهار اثر">
-            <h3>چهار اثر فلورانس اسکاول شین</h3>
-            <p>فلورانس شین</p>
-            <div class="price">۱۵۰,۰۰۰ تومان</div>
-            <button>افزودن به سبد خرید</button>
-        </div>
 
       if(users[username] && users[username].password === password){
         alert('ورود موفقیت‌آمیز بود. خوش آمدید '+username);
@@ -424,7 +312,6 @@
         alert('نام کاربری یا رمز عبور اشتباه است');
       }
     });
-    </section>
 
     // بستن فرم‌ها با کلیک بیرون
     window.addEventListener('click', function(e){
@@ -433,15 +320,12 @@
     });
     </script>
      <!-- فوتر -->
-    <!-- فوتر -->
     <footer>
         <p>تمامی حقوق این سایت محفوظ است © کتابکده دانش</p>
           <a href="https://enamad.ir/" target="_blank">
             <img src="logo.jpg" alt="نماد اعتماد الکترونیکی">
         </a>
-        <p>تمامی حقوق سایت محفوظ است © کتابکده دانش</p>
     </footer>
 </script>
-
 </body>
 </html>
