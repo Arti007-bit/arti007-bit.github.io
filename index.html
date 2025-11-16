@@ -116,6 +116,18 @@
           margin-bottom: 10px;
         }
         .close:hover { color: black; }
+        .hero-image {
+    width: 100%;
+    height: 50vh; /* نصف صفحه */
+    overflow: hidden; /* اضافات را مخفی می‌کند */
+}
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* تصویر به‌صورت وسط و بدون کشیدگی */
+    object-position: center center; /* وسط‌چین */
+    display: block;
+}
     </style>
 </head>
 <body>
@@ -141,6 +153,9 @@
             <button>جستجو</button>
         </div>
     </header>
+                      <div class="hero-image">
+    <img src="broshor.jpg" alt="بروشور">
+</div>
     <!-- محصولات -->
     <section id="store" class="product-container">
 
