@@ -116,43 +116,6 @@
           margin-bottom: 10px;
         }
         .close:hover { color: black; }
-        /* اسلایدر عریض */
-.slider {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    margin: auto;
-    overflow: hidden;
-}
-
-.slides {
-    display: flex;
-    transition: 0.5s;
-}
-
-.slide {
-    min-width: 100%;
-}
-
-.slide img {
-    width: 100%;
-}
-
-.slider-controls span {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 40px;
-    color: white;
-    font-weight: bold;
-    padding: 10px;
-    cursor: pointer;
-    user-select: none;
-}
-
-.prev { left: 10px; }
-.next { right: 10px; }
-}
     </style>
 </head>
 <body>
@@ -180,21 +143,6 @@
             <button>جستجو</button>
         </div>
     </header>
-<!-- اسلایدر کشویی عریض -->
-<section class="slider">
-    <div class="slides">
-        <div class="slide"><img src="raz.jpg" alt=""></div>
-        <div class="slide"><img src="ensan.jpg" alt=""></div>
-        <div class="slide"><img src="asar-morakab.jpg" alt=""></div>
-    </div>
-
-    <div class="slider-controls">
-        <span class="prev"><</span>
-        <span class="next">></span>
-    </div>
-</section>
-</section>
-</section>
     <!-- محصولات -->
     <section id="store" class="product-container">
 
@@ -353,24 +301,6 @@
             <img src="logo.jpg" alt="نماد اعتماد الکترونیکی">
         </a>
     </footer>
-<script>
-let index = 0;
-const slides = document.querySelector('.slides');
-const total = document.querySelectorAll('.slide').length;
-
-function showSlide(i) {
-    slides.style.transform = `translateX(-${i * 100}%)`;
-}
-
-document.querySelector('.next').onclick = () => {
-    index = (index + 1) % total;
-    showSlide(index);
-}
-
-document.querySelector('.prev').onclick = () => {
-    index = (index - 1 + total) % total;
-    showSlide(index);
-}
 </script>
 </body>
 </html>
