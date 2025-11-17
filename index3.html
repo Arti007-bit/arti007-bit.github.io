@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
 <head>
     <meta charset="UTF-8">
     <title>جدیدترین ها</title>
     <style>
-           /* تنظیمات پایه */
+        /* تنظیمات پایه */
         * { box-sizing: border-box; }
         body {
             margin: 0;
@@ -20,7 +20,7 @@
             margin: 0;
             padding: 50px;
         }
-   /* بخش محصولات */
+        /* بخش محصولات */
         .product-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -61,66 +61,62 @@
         a:hover {
             background-color: #005fa3;
         }
-
-        form {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            display: inline-block;
-            margin-top: 20px;
-            text-align: right;
-        }
-
-        label, input, textarea {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        input, textarea {
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        button {
-            background-color: #0078d7;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #005fa3;
-        }
     </style>
 </head>
 <body>
-<h1> محصولات بروز شده</h1>
+<h1>محصولات بروز شده</h1>
 
 <a href="index.html">🏠 بازگشت به صحفه ی اصلی </a>
-  <div class="product">
-            <img src="movafaghyat.jpg" alt="موفقیت">
-            <h3>موفقیت</h3>
-            <p>نویسنده: چارلز داهیگ</p>
-            <div class="price">۲۱۰,۰۰۰ تومان</div>
-            <button class="pay-btn" data-order-id="ORDER1" data-amount="210000">افزودن به سبد خرید</button>
-        </div>
-      <div class="product">
-            <img src="raz.jpg" alt="راز">
-            <h3>راز</h3>
-            <p>نویسنده: چارلز داهیگ</p>
-            <div class="price">۲۱۰,۰۰۰ تومان</div>
-            <button class="pay-btn" data-order-id="ORDER1" data-amount="210000">افزودن به سبد خرید</button>
-        </div>
-      <div class="product">
-            <img src="asar morakab.jpg" alt="اثر مرکب">
-            <h3>اثر مرکب</h3>
-            <p>نویسنده: چارلز داهیگ</p>
-            <div class="price">۲۱۰,۰۰۰ تومان</div>
-            <button class="pay-btn" data-order-id="ORDER1" data-amount="210000">افزودن به سبد خرید</button>
-        </div>
+
+<div class="product-container">
+    <div class="product">
+        <img src="movafaghyat.jpg" alt="موفقیت">
+        <h3>موفقیت</h3>
+        <p>نویسنده: چارلز داهیگ</p>
+        <div class="price">۲۱۰,۰۰۰ تومان</div>
+        <button class="add-to-cart" data-name="موفقیت" data-price="210000">افزودن به سبد خرید</button>
+    </div>
+    <div class="product">
+        <img src="raz.jpg" alt="راز">
+        <h3>راز</h3>
+        <p>نویسنده: چارلز داهیگ</p>
+        <div class="price">۲۱۰,۰۰۰ تومان</div>
+        <button class="add-to-cart" data-name="راز" data-price="210000">افزودن به سبد خرید</button>
+    </div>
+    <div class="product">
+        <img src="asar morakab.jpg" alt="اثر مرکب">
+        <h3>اثر مرکب</h3>
+        <p>نویسنده: چارلز داهیگ</p>
+        <div class="price">۲۱۰,۰۰۰ تومان</div>
+        <button class="add-to-cart" data-name="اثر مرکب" data-price="210000">افزودن به سبد خرید</button>
+    </div>
+</div>
+
+<script>
+    // همه دکمه‌های افزودن به سبد خرید
+    const buttons = document.querySelectorAll(".add-to-cart");
+
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const name = btn.getAttribute("data-name");
+            const price = Number(btn.getAttribute("data-price"));
+            
+            // گرفتن سبد خرید از localStorage یا ایجاد جدید
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            // بررسی اینکه محصول از قبل در سبد هست یا نه
+            const existing = cart.find(item => item.name === name);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({name: name, price: price, quantity: 1});
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert(`${name} به سبد خرید اضافه شد 🛒`);
+        });
+    });
+</script>
+
 </body>
 </html>
