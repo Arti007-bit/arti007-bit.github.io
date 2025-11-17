@@ -33,21 +33,11 @@ button { cursor: pointer; padding: 4px 8px; margin: 0 3px; }
   font-size: 15px;
 }
 
-.clear-cart {
-  background-color: #d33;
-}
+.clear-cart { background-color: #d33; }
+.finalize-cart { background-color: #4CAF50; }
 
-.finalize-cart {
-  background-color: #4CAF50;
-}
-
-.clear-cart:hover {
-  background-color: #b22;
-}
-
-.finalize-cart:hover {
-  background-color: #45a049;
-}
+.clear-cart:hover { background-color: #b22; }
+.finalize-cart:hover { background-color: #45a049; }
 
 .total {
   font-weight: bold;
@@ -76,7 +66,6 @@ a { text-decoration: none; color: #007bff; }
 
     <p class="total"></p>
 
-    <!-- ✅ فقط همین دو دکمه کافی هست -->
     <div class="cart-buttons">
       <button id="clear-cart" class="clear-cart">🗑️ خالی کردن سبد خرید</button>
       <a href="checkout.html" class="finalize-cart">نهایی کردن خرید</a>
@@ -104,7 +93,9 @@ a { text-decoration: none; color: #007bff; }
     }
 
     cart.forEach((item, index) => {
-      const name = item.name || "title";
+
+      /* ⭐⭐⭐ فقط همین خط اصلاح شده ⭐⭐⭐ */
+      const name = item.title || "نام محصول";
       const price = Number(item.price) || 0;
       const quantity = Number(item.quantity) || 1;
       const subtotal = price * quantity;
