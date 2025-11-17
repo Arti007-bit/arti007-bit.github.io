@@ -324,6 +324,28 @@ window.addEventListener('click', function(e){
 });
 
 </script>
+    <script>
+// مدیریت سبد خرید
+const cartButtons = document.querySelectorAll('.add-to-cart');
 
+cartButtons.forEach(btn => {
+    btn.addEventListener('click', function () {
+
+        let price = parseInt(this.getAttribute('data-price'));
+        let title = this.parentElement.querySelector('h3').innerText;
+
+        // دریافت سبد از localStorage
+        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+
+        // اضافه کردن محصول
+        cart.push({ title, price });
+
+        // ذخیره دوباره
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        alert("✔ محصول به سبد خرید اضافه شد!");
+    });
+});
+</script>
 </body>
 </html>
