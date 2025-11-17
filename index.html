@@ -286,78 +286,69 @@
 
     <p id="msg" style="font-size:20px; margin-top:15px;"></p>
 </div>
+  // فرم ثبت نام و ورود
+    const signupForm = document.getElementById('signup-form');
+    const loginForm = document.getElementById('login-form');
 
+    document.querySelector('a[href="#signup"]').addEventListener('click', ()=>{
+      signupForm.style.display = 'block';
+    });
+    document.querySelector('a[href="#login"]').addEventListener('click', ()=>{
+      loginForm.style.display = 'block';
+    });
+
+    document.getElementById('close-signup').addEventListener('click', ()=>{ signupForm.style.display = 'none'; });
+    document.getElementById('close-login').addEventListener('click', ()=>{ loginForm.style.display = 'none'; });
+
+    // ثبت نام
+    document.getElementById('signup-submit').addEventListener('click', ()=>{
+      const username = document.getElementById('signup-username').value.trim();
+      const password = document.getElementById('signup-password').value.trim();
+      const email = document.getElementById('signup-email').value.trim();
+
+      if(!username || !password){
+        alert('نام کاربری و رمز عبور الزامی است');
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem('users') || '{}');
+
+      if(users[username]){
+        alert('نام کاربری قبلا ثبت شده است');
+        return;
+      }
+
+      users[username] = { password, email };
+      localStorage.setItem('users', JSON.stringify(users));
+      alert('ثبت نام با موفقیت انجام شد');
+      signupForm.style.display = 'none';
+    });
+
+    // ورود
+    document.getElementById('login-submit').addEventListener('click', ()=>{
+      const username = document.getElementById('login-username').value.trim();
+      const password = document.getElementById('login-password').value.trim();
+
+      let users = JSON.parse(localStorage.getItem('users') || '{}');
+
+      if(users[username] && users[username].password === password){
+        alert('ورود موفقیت‌آمیز بود. خوش آمدید '+username);
+        loginForm.style.display = 'none';
+      }else{
+        alert('نام کاربری یا رمز عبور اشتباه است');
+      }
+    });
+
+    // بستن فرم‌ها با کلیک بیرون
+    window.addEventListener('click', function(e){
+      if(e.target == signupForm) signupForm.style.display = 'none';
+      if(e.target == loginForm) loginForm.style.display = 'none';
+    });
 <footer>
     <p>تمامی حقوق این سایت محفوظ است © کتابکده دانش</p>
     <a href="https://enamad.ir/" target="_blank">
         <img src="logo.jpg" alt="نماد اعتماد الکترونیکی" width="80">
     </a>
 </footer>
-
-<script>
-/* ثبت‌نام */
-document.querySelector('a[href="#signup"]').addEventListener('click', ()=> {
-    document.getElementById('signup-form').style.display = 'block';
-});
-
-/* ورود */
-document.querySelector('a[href="#login"]').addEventListener('click', ()=> {
-    document.getElementById('login-form').style.display = 'block';
-});
-
-/* دکمه‌های بستن */
-document.getElementById('close-signup').onclick = () => {
-    document.getElementById('signup-form').style.display = 'none';
-};
-document.getElementById('close-login').onclick = () => {
-    document.getElementById('login-form').style.display = 'none';
-};
-
-/* ثبت‌نام */
-document.getElementById('signup-submit').onclick = () => {
-    const username = signup-username.value.trim();
-    const password = signup-password.value.trim();
-    const email = signup-email.value.trim();
-
-    if (!username || !password) {
-        alert("نام کاربری و رمز عبور الزامی است");
-        return;
-    }
-
-    let users = JSON.parse(localStorage.getItem("users") || "{}");
-
-    if (users[username]) {
-        alert("این نام کاربری قبلاً ثبت شده");
-        return;
-    }
-
-    users[username] = {password, email};
-    localStorage.setItem("users", JSON.stringify(users));
-    alert("ثبت‌نام موفقیت‌آمیز بود");
-    signup-form.style.display = "none";
-};
-
-/* ورود */
-document.getElementById('login-submit').onclick = () => {
-    const username = login-username.value.trim();
-    const password = login-password.value.trim();
-
-    let users = JSON.parse(localStorage.getItem("users") || "{}");
-
-    if (users[username] && users[username].password === password) {
-        alert("ورود موفق! خوش آمدی " + username);
-        login-form.style.display = "none";
-    } else {
-        alert("نام کاربری یا رمز اشتباه است");
-    }
-};
-
-/* کلیک بیرون برای بستن */
-window.onclick = (e) => {
-    if (e.target == signup-form) signup-form.style.display = "none";
-    if (e.target == login-form) login-form.style.display = "none";
-};
-</script>
-
 </body>
 </html>
