@@ -86,49 +86,49 @@
             padding: 15px;
             margin-top: 40px;
         }
-         /* استایل فرم‌ها (پاپ‌آپ) */
+
+        /* مودال‌ها */
         .modal {
-          display: none;
-          position: fixed;
-          z-index: 999;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          overflow: auto;
-          background-color: rgba(0,0,0,0.5);
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
         }
         .modal-content {
-          background-color: #fefefe;
-          margin: 10% auto;
-          padding: 20px;
-          border-radius: 10px;
-          width: 300px;
-          text-align: center;
+            background: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
         }
         .modal-content input {
-          width: 90%;
-          padding: 8px;
-          margin: 8px 0;
-          border-radius: 5px;
-          border: 1px solid #ccc;
+            width: 90%;
+            padding: 8px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
         .modal-content button {
-          background: #4caf50;
-          color: white;
-          border: none;
-          padding: 10px 15px;
-          border-radius: 5px;
-          cursor: pointer;
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
         }
-        .modal-content button:hover { background: #388e3c; }
         .close {
-          color: #aaa;
-          float: left;
-          font-size: 20px;
-          cursor: pointer;
-          margin-bottom: 10px;
+            color: #aaa;
+            float: left;
+            font-size: 20px;
+            cursor: pointer;
         }
+        .close:hover { color: black; }
+
         .hero-image {
             width: 100%;
             display: flex;
@@ -144,48 +144,6 @@
             width: 100%;
             height: auto;
         }
-
-        /* مودال‌ها */
-        .modal {
-          display: none;
-          position: fixed;
-          z-index: 999;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0,0,0,0.5);
-        }
-        .modal-content {
-          background: #fff;
-          margin: 10% auto;
-          padding: 20px;
-          border-radius: 10px;
-          width: 300px;
-          text-align: center;
-        }
-        .modal-content input {
-          width: 90%;
-          padding: 8px;
-          margin: 8px 0;
-          border-radius: 5px;
-          border: 1px solid #ccc;
-        }
-        .modal-content button {
-          background: #4caf50;
-          color: white;
-          border: none;
-          padding: 10px 15px;
-          border-radius: 5px;
-          cursor: pointer;
-        }
-        .close {
-          color: #aaa;
-          float: left;
-          font-size: 20px;
-          cursor: pointer;
-        }
-        .close:hover { color: black; }
     </style>
 </head>
 
@@ -256,99 +214,116 @@
     </div>
 
 </section>
+
+<!-- فرم ثبت نام -->
 <div id="signup-form" class="modal">
-      <div class="modal-content">
+    <div class="modal-content">
         <span class="close" id="close-signup">&times;</span>
         <h3>فرم ثبت نام</h3>
         <input type="text" id="signup-username" placeholder="نام کاربری">
         <input type="password" id="signup-password" placeholder="رمز عبور">
         <input type="email" id="signup-email" placeholder="ایمیل (اختیاری)">
         <button id="signup-submit">ثبت نام</button>
-      </div>
     </div>
+</div>
 
-    <!-- فرم ورود -->
-    <div id="login-form" class="modal">
-      <div class="modal-content">
+<!-- فرم ورود -->
+<div id="login-form" class="modal">
+    <div class="modal-content">
         <span class="close" id="close-login">&times;</span>
         <h3>فرم ورود</h3>
         <input type="text" id="login-username" placeholder="نام کاربری">
         <input type="password" id="login-password" placeholder="رمز عبور">
         <button id="login-submit">ورود</button>
-      </div>
     </div>
-<!-- دکمه Coming Soon -->
+</div>
+
+<!-- Coming soon -->
 <div style="text-align:center; margin:30px;">
     <button onclick="document.getElementById('msg').innerText='گفتم بزودی'"
             style="padding:10px 20px; font-size:18px; border:2px solid #007bff; border-radius:8px; cursor:pointer;">
         Coming Soon
     </button>
-
     <p id="msg" style="font-size:20px; margin-top:15px;"></p>
 </div>
-  // فرم ثبت نام و ورود
-    const signupForm = document.getElementById('signup-form');
-    const loginForm = document.getElementById('login-form');
 
-    document.querySelector('a[href="#signup"]').addEventListener('click', ()=>{
-      signupForm.style.display = 'block';
-    });
-    document.querySelector('a[href="#login"]').addEventListener('click', ()=>{
-      loginForm.style.display = 'block';
-    });
-
-    document.getElementById('close-signup').addEventListener('click', ()=>{ signupForm.style.display = 'none'; });
-    document.getElementById('close-login').addEventListener('click', ()=>{ loginForm.style.display = 'none'; });
-
-    // ثبت نام
-    document.getElementById('signup-submit').addEventListener('click', ()=>{
-      const username = document.getElementById('signup-username').value.trim();
-      const password = document.getElementById('signup-password').value.trim();
-      const email = document.getElementById('signup-email').value.trim();
-
-      if(!username || !password){
-        alert('نام کاربری و رمز عبور الزامی است');
-        return;
-      }
-
-      let users = JSON.parse(localStorage.getItem('users') || '{}');
-
-      if(users[username]){
-        alert('نام کاربری قبلا ثبت شده است');
-        return;
-      }
-
-      users[username] = { password, email };
-      localStorage.setItem('users', JSON.stringify(users));
-      alert('ثبت نام با موفقیت انجام شد');
-      signupForm.style.display = 'none';
-    });
-
-    // ورود
-    document.getElementById('login-submit').addEventListener('click', ()=>{
-      const username = document.getElementById('login-username').value.trim();
-      const password = document.getElementById('login-password').value.trim();
-
-      let users = JSON.parse(localStorage.getItem('users') || '{}');
-
-      if(users[username] && users[username].password === password){
-        alert('ورود موفقیت‌آمیز بود. خوش آمدید '+username);
-        loginForm.style.display = 'none';
-      }else{
-        alert('نام کاربری یا رمز عبور اشتباه است');
-      }
-    });
-
-    // بستن فرم‌ها با کلیک بیرون
-    window.addEventListener('click', function(e){
-      if(e.target == signupForm) signupForm.style.display = 'none';
-      if(e.target == loginForm) loginForm.style.display = 'none';
-    });
 <footer>
     <p>تمامی حقوق این سایت محفوظ است © کتابکده دانش</p>
     <a href="https://enamad.ir/" target="_blank">
         <img src="logo.jpg" alt="نماد اعتماد الکترونیکی" width="80">
     </a>
 </footer>
+
+<!-- اسکریپت‌ها -->
+<script>
+
+// فرم‌ها
+const signupForm = document.getElementById('signup-form');
+const loginForm = document.getElementById('login-form');
+
+document.querySelector('a[href="#signup"]').addEventListener('click', ()=>{
+  signupForm.style.display = 'block';
+});
+
+document.querySelector('a[href="#login"]').addEventListener('click', ()=>{
+  loginForm.style.display = 'block';
+});
+
+document.getElementById('close-signup').addEventListener('click', ()=>{
+  signupForm.style.display = 'none';
+});
+
+document.getElementById('close-login').addEventListener('click', ()=>{
+  loginForm.style.display = 'none';
+});
+
+// ثبت نام
+document.getElementById('signup-submit').addEventListener('click', ()=>{
+  const username = document.getElementById('signup-username').value.trim();
+  const password = document.getElementById('signup-password').value.trim();
+  const email = document.getElementById('signup-email').value.trim();
+
+  if(!username || !password){
+    alert('نام کاربری و رمز عبور الزامی است');
+    return;
+  }
+
+  let users = JSON.parse(localStorage.getItem('users') || '{}');
+
+  if(users[username]){
+    alert('نام کاربری قبلا ثبت شده است');
+    return;
+  }
+
+  users[username] = { password, email };
+  localStorage.setItem('users', JSON.stringify(users));
+
+  alert('ثبت نام با موفقیت انجام شد');
+  signupForm.style.display = 'none';
+});
+
+// ورود
+document.getElementById('login-submit').addEventListener('click', ()=>{
+  const username = document.getElementById('login-username').value.trim();
+  const password = document.getElementById('login-password').value.trim();
+
+  let users = JSON.parse(localStorage.getItem('users') || '{}');
+
+  if(users[username] && users[username].password === password){
+    alert('ورود موفقیت‌آمیز بود. خوش آمدید '+username);
+    loginForm.style.display = 'none';
+  }else{
+    alert('نام کاربری یا رمز عبور اشتباه است');
+  }
+});
+
+// بستن با کلیک بیرون
+window.addEventListener('click', function(e){
+  if(e.target == signupForm) signupForm.style.display = 'none';
+  if(e.target == loginForm) loginForm.style.display = 'none';
+});
+
+</script>
+
 </body>
 </html>
