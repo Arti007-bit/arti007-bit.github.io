@@ -211,6 +211,7 @@
         <p>نویسنده: فلورانس شین</p>
         <div class="price">۱۵۰,۰۰۰ تومان</div>
         <button class="add-to-cart" data-price="150000">افزودن به سبد خرید</button>
+        <button
     </div>
 
 </section>
@@ -343,7 +344,7 @@ cartButtons.forEach(btn => {
         // ذخیره دوباره
         localStorage.setItem('cart', JSON.stringify(cart));
 
-        alert("✔ محصول به سبد خرید اضافه شد!");
+        alert(" ✔ «" + title + "» محصول به سبد خرید اضافه شد!");
     });
 });
 </script>
