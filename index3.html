@@ -117,6 +117,32 @@
         });
     });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".pay-btn");
+
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const product = btn.closest(".product");
+            const name = product.querySelector("h3").innerText;
+            const priceText = product.querySelector(".price").innerText.replace(/[^0-9]/g, '');
+            const price = parseInt(priceText);
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            // بررسی اینکه محصول قبلاً وجود داشته باشه
+            const existing = cart.find(item => item.name === name);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ name: name, price: price, quantity: 1 });
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert(`${name} به سبد خرید اضافه شد ✅`);
+        });
+    });
+});
+</script>
 
 </body>
 </html>
