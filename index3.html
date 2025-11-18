@@ -84,7 +84,7 @@
         <button class="add-to-cart" data-name="راز" data-price="210000">افزودن به سبد خرید</button>
     </div>
     <div class="product">
-        <img src="asar morakab.jpg" alt="اثر مرکب">
+        <img src="asar-morakab.jpg" alt="اثر مرکب">
         <h3>اثر مرکب</h3>
         <p>نویسنده: چارلز داهیگ</p>
         <div class="price">۲۱۰,۰۰۰ تومان</div>
@@ -136,9 +136,9 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 cart.push({ name: name, price: price, quantity: 1 });
             }
+ localStorage.setItem('cart', JSON.stringify(cart));
 
-            localStorage.setItem("cart", JSON.stringify(cart));
-            alert(`${name} به سبد خرید اضافه شد ✅`);
+        alert(" ✔ «" + title + "» محصول به سبد خرید اضافه شد!");
         });
     });
 });
