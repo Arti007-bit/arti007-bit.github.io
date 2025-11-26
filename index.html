@@ -144,20 +144,52 @@
             width: 100%;
             height: auto;
         }
+        .hover-line {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* خط بالا و پایین مخفی */
+.hover-line::before,
+.hover-line::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background: #3498db; /* رنگ خط آبی */
+    transition: 0.4s ease;
+}
+
+/* خط بالا */
+.hover-line::before {
+    top: -6px;
+    left: 0;
+}
+
+/* خط پایین */
+.hover-line::after {
+    bottom: -6px;
+    right: 0;
+}
+
+/* وقتی موس میره روی نوشته → خط‌ها باز می‌شن */
+.hover-line:hover::before,
+.hover-line:hover::after {
+    width: 100%;
+}
     </style>
 </head>
-
 <body>
-
 <header>
     <h1>📚 کتابکده دانش</h1>
     <nav>
         <a href="#home">خانه</a>
         <a href="#store">فروشگاه</a>
-        <a href="index3.html" target="_blank">جدیدترین‌ها</a>
-        <a href="index2.html" target="_blank">ارتباط با ما</a>
-        <a href="#login">ورود</a>
-        <a href="#signup">عضویت</a>
+        <a href="index3.html" class="hover-line" target="_blank">جدیدترین‌ها</a>
+        <a href="index2.html" class="hover-line" target="_blank">ارتباط با ما</a>
+        <a href="#login" class="hover-line" >ورود</a>
+        <a href="#signup" class="hover-line" >عضویت</a>
     </nav>
 
     <div class="cart">
@@ -223,7 +255,7 @@
         <input type="text" id="signup-username" placeholder="نام کاربری">
         <input type="password" id="signup-password" placeholder="رمز عبور">
         <input type="email" id="signup-email" placeholder="ایمیل (اختیاری)">
-        <button id="signup-submit">ثبت نام</button>
+        <button id="signup-submit" class="hover-line">ثبت نام</button>
     </div>
 </div>
 
@@ -234,7 +266,7 @@
         <h3>فرم ورود</h3>
         <input type="text" id="login-username" placeholder="نام کاربری">
         <input type="password" id="login-password" placeholder="رمز عبور">
-        <button id="login-submit">ورود</button>
+        <button id="login-submit" class="hover-line">ورود</button>
     </div>
 </div>
 
