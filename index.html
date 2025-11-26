@@ -14,6 +14,25 @@
             direction: rtl;
         }
 
+       .moving-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(41, 47, 129);
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 30px;
+    animation: slideText 8s linear infinite alternate;
+}
+
+@keyframes slideText {
+    0% { 
+        transform: translateX(-100%); 
+    }
+    100% { 
+        transform: translateX(100%); 
+    }
+}       
         header {
             background: #4caf50;
             color: white;
@@ -284,6 +303,10 @@
         <button class="add-to-cart" data-price="185000">افزودن به سبد خرید</button>
     </div>
 
+    <div class="moving-text">
+    **ما را در شبکه های اجتماعی دنبال کنید**
+</div>
+    
 </section>
 
 <h2 class="product-title">مقالات</h2>
