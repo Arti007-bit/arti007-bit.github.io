@@ -14,25 +14,6 @@
             direction: rtl;
         }
 
-       .moving-text {
-    font-size: 24px;
-    font-weight: bold;
-    color: rgb(41, 47, 129);
-    width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    margin-top: 30px;
-    animation: slideText 8s linear infinite alternate;
-}
-
-@keyframes slideText {
-    0% { 
-        transform: translateX(-100%); 
-    }
-    100% { 
-        transform: translateX(100%); 
-    }
-}       
         header {
             background: #4caf50;
             color: white;
@@ -53,6 +34,25 @@
         .search-box button { padding: 5px 10px; border: none; background: #388e3c; color: white; font-weight: bold; border-radius: 0 5px 5px 0; cursor: pointer; }
         .search-box button:hover { background: #2e7030; }
 
+         .moving-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(41, 47, 129);
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 30px;
+    animation: slideText 8s linear infinite alternate;
+}
+
+@keyframes slideText {
+    0% { 
+        transform: translateX(-100%); 
+    }
+    100% { 
+        transform: translateX(100%); 
+    }
+}       
         .product-title {
             text-align: center;
             border: 2px solid #2196f3;
@@ -197,18 +197,27 @@
 .hover-line:hover::after {
     width: 100%;
 }
-social-image {
+.social-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+   flex-direction: row-reverse; /* متن راست، تصویر چپ */
+  gap: 30px;
+}
+
+.social-image {
   width: 700%;
   max-width:700px;
   border-radius: 0 200px 200px 0; /* نیم دایره از سمت راست */
   object-fit: cover;
 }
 
+
 .social-text {
   width: 55%;
   text-align: right;
   font-family: sans-serif;
-}        
+}
     </style>
 </head>
 <body>
@@ -314,6 +323,8 @@ social-image {
         <div class="price">۱۸۵,۰۰۰ تومان</div>
         <button class="add-to-cart" data-price="185000">افزودن به سبد خرید</button>
     </div>
+    </section>
+
 <div class="social-section">
   <img src="tasvir tabligh1.png" alt="تصویر شبکه های اجتماعی" class="social-image">
 
@@ -325,48 +336,6 @@ social-image {
     </p>
   </div>
 </div>
-
-<style>
-.ad-box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 20px;
-  max-width: 800px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  font-family: Vazirmatn, Tahoma, sans-serif;
-}
-
-.ad-image {
-  width: 180px;      /* تصویر کوچک ولی واضح */
-  height: auto;
-  border-radius: 12px;
-  object-fit: contain;
-}
-
-.ad-text {
-  text-align: right;
-  padding-right: 20px;
-}
-
-.ad-text h2 {
-  margin: 0 0 10px;
-  font-size: 26px;
-  color: #1a3d6f;
-}
-
-.ad-text p {
-  margin: 0;
-  font-size: 18px;
-  line-height: 1.8;
-  color: #333;
-}
-</style>
-
-    
-</section>
 
 <h2 class="product-title">مقالات</h2>
 
